@@ -1,0 +1,18 @@
+pokemon:
+  hitmonchan: 4
+  electabuzz: 4
+  farfetchd: 4
+  chansey: 2
+trainers:
+  bill: 4
+  energy_removal: 4
+  gust_of_wind: 3
+  professor_oak: 3
+  super_energy_removal: 3
+  pluspower: 2
+  scoop_up: 2
+  computer_search: 1
+energy:
+  electric: 9
+  fighting: 11
+  double_colourless: 4

@@ -1,0 +1,18 @@
+{
+  psychic:
+    amount: 1
+  electric:
+    amount: 1
+  fire:
+    amount: 1
+  water:
+    amount: 1
+  grass:
+    amount: 1
+  fighting:
+    amount: 1
+  colorless:
+    amount: 1
+  double_colourless:
+    amount: 2
+}
