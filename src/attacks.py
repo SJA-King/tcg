@@ -33,7 +33,7 @@ class Attack:
 
 # effect and coinflipeffect are the same, just one is bounded on coin flip
 
-# TODO add common effects, like draw, burn energy, inflict_status, etc
+# TODO add common effects, like draw, burn energy, inflict_status, reduce_damage, etc
 
 
 # TODO attacks as methods

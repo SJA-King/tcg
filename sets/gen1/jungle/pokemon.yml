@@ -20,17 +20,3 @@ alakazam:
     height: 4'11" (1.5 m)
     weight: 106 lbs. (48.0 kg)
     pokedex_entry: Its brain can outperform a supercomputer. Its intelligence quotient is said to be 5000.
-blastoise:
-  number:
-  type:
-  hp:
-  attack_1:
-  attack_2:
-  weakness:
-  retreat_cost:
-  pokepower:
-  other:
-    no:
-    height:
-    weight:
-    pokedex_entry:
