@@ -1,0 +1,3 @@
+
+class PokePower:
+    pass

@@ -44,6 +44,7 @@ class Card:
 
     def __init__(self, name, effect):
         self.name = name
+        # TODO is an "effect" a generic for an action, command etc. E.g. an attack or a pokepower is an effect, like a trainer's effect?
         self.effect = effect
 
 
