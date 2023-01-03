@@ -22,6 +22,9 @@ class Attack:
         self.coin_flip = coin_flip_effect
         pass
 
+    def use(self):
+        raise NotImplementedError
+
 # TODO Make things like
 # DamageAttack - which is an attack with just damage
 # EffectAttack - which is an attack with just an effect
@@ -30,15 +33,14 @@ class Attack:
 # DoubleCoinFlipAttack - which is an attack with 2 coin flip
 # etc
 
-
 # effect and coinflipeffect are the same, just one is bounded on coin flip
 
 # TODO add common effects, like draw, burn energy, inflict_status, reduce_damage, etc
 
+# TODO effects like add damage, reduce damage are used by trainers and attacks, so it should be generic!
 
-# TODO attacks as methods
-def confuse_ray():
-    pass
+# def confuse_ray():
+#     pass
 
 
 # OR

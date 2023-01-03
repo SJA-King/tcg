@@ -12,6 +12,44 @@ My attempt at a cmdline, api, gui Pokemon TCG (all rights belong to Wizards otC 
 - trainer, a type of card, generally single effect, single use
 - energy card, a type of card that is only in play as an attached card
 
-
-
 WIP
+
+TODO
+
+1. Add haymaker pokemon card entries
+   1. electabuzz
+   2. hitmonchan
+   3. farfetchd
+   4. chansey
+   5. bill
+   6. energy_removal
+   7. gust_of_wind
+   8. professor_oak
+   9. super_energy_removal
+   10. pluspower
+   11. scoop_up
+   12. computer_search
+   13. electric
+   14. fighting
+   15. double_colourless
+2. Need to import cards
+   1. import pokemon
+   2. import energy
+   3. import trainer
+3. make a deck of 60 cards
+4. make a player with a deck, discard
+5. make a player with above AND a hand
+6. make a player with above AND a prize pool
+7. make a player with above AND an active pokemon
+8. make a player with above AND benched pokemon
+   1. 1 benched pokemon
+   2. 2 benched pokemon
+   3. 3 benched pokemon
+   4. 4 benched pokemon
+   5. 5 benched pokemon
+9. Make all effects
+   1. draw card
+   2. discard card
+   3. etc
+10. make all attacks in haymaker deck
+11. ~~make all pokepowers~~ (Not needed yet)
