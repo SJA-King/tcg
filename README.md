@@ -15,20 +15,7 @@ My attempt at a cmdline, api, gui Pokemon TCG (all rights belong to Wizards otC 
 WIP
 
 TODO
-
-1. Add haymaker pokemon card entries 
-   1. bill
-   2. energy_removal
-   3. gust_of_wind
-   4. professor_oak
-   5. super_energy_removal
-   6. pluspower
-   7. scoop_up
-   8. computer_search
-   9. electric
-   10. fighting
-   11. double_colourless
-2. Need to import cards
+1. Need to import cards
    1. import pokemon
    2. import energy
    3. import trainer
