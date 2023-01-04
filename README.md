@@ -16,22 +16,18 @@ WIP
 
 TODO
 
-1. Add haymaker pokemon card entries
-   1. electabuzz
-   2. hitmonchan
-   3. farfetchd
-   4. chansey
-   5. bill
-   6. energy_removal
-   7. gust_of_wind
-   8. professor_oak
-   9. super_energy_removal
-   10. pluspower
-   11. scoop_up
-   12. computer_search
-   13. electric
-   14. fighting
-   15. double_colourless
+1. Add haymaker pokemon card entries 
+   1. bill
+   2. energy_removal
+   3. gust_of_wind
+   4. professor_oak
+   5. super_energy_removal
+   6. pluspower
+   7. scoop_up
+   8. computer_search
+   9. electric
+   10. fighting
+   11. double_colourless
 2. Need to import cards
    1. import pokemon
    2. import energy
