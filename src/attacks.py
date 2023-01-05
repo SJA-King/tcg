@@ -1,7 +1,8 @@
 from common import STATUSES
+from actions import Action
 
 
-class Attack:
+class Attack(Action):
     def __init__(self,
                  name: str = "Attack",
                  energy_cost: dict = None,
@@ -10,10 +11,10 @@ class Attack:
                  coin_flip: bool = False,
                  n_coin_flip: int = 0,
                  coin_flip_effect: str = ""):
-        self.attack_name = name
+        super().__init__(name, effect)
+
         self.energy_cost = energy_cost
         self.damage = damage
-        self.effect = effect
         self.coin_flip = coin_flip
         if self.coin_flip:
             if n_coin_flip <= 0:
@@ -62,5 +63,14 @@ ATTACKS = {
                           coin_flip=True,
                           n_coin_flip=1,
                           # TODO change to an enum style
-                          coin_flip_effect=STATUSES["confuse"])
+                          coin_flip_effect=STATUSES["confuse"]),
+    "Thundershock": Attack(),
+    "Thunderpunch": Attack(),
+    "Leek Slap": Attack(),
+    "Pot Smash": Attack(),
+    "Scrunch": Attack(),
+    "Double-edge": Attack(),
+    "Jab": Attack(),
+    "Special Punch": Attack(),
+    "None": None
 }
