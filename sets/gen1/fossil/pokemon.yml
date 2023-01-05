@@ -1,14 +1,10 @@
 Aerodactyl:
-  number:
-  type:
-  hp:
-  attack_1:
-  attack_2:
-  weakness:
-  retreat_cost:
-  pokepower:
-  other:
-    no:
-    height:
-    weight:
-    pokedex_entry:
+  type: Fighting
+  hp: 60
+  attack_1: Wing Attack
+  attack_2: None
+  resistance: Fighting
+  weakness: Grass
+  retreat_cost: 2
+  pokepower: Prehistoric Power
+

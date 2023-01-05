@@ -16,9 +16,8 @@ WIP
 
 TODO
 1. Need to import cards
-   1. import pokemon
-   2. import energy
-   3. import trainer
+   1. import energy 
+   2. import trainer
 3. make a deck of 60 cards
 4. make a player with a deck, discard
 5. make a player with above AND a hand
