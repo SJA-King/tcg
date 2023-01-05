@@ -1,9 +1,9 @@
-pokemon:
+Pokemon:
   Hitmonchan: 4
   Electabuzz: 4
   Farfetchd: 4
   Chansey: 2
-trainers:
+Trainers:
   Bill: 4
   Energy Removal: 4
   Gust Of Wind: 3
@@ -12,7 +12,7 @@ trainers:
   PlusPower: 2
   Scoop Up: 2
   Computer Search: 1
-energy:
+Energies:
   Lightning: 9
   Fighting: 11
   Double Colorless: 4

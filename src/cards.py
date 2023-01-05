@@ -6,44 +6,6 @@ from attacks import ATTACKS
 from pokepowers import POKEPOWERS
 
 
-def move_card(from_pile: list, to_pile: list) -> [list, list]:
-    """ Move a single card from one pile to another """
-    # TODO check piles arent empty!
-    from_pile.pop()
-    to_pile.append(from_pile[0])
-    return from_pile, to_pile
-
-
-def move_cards(from_pile: list, to_pile: list, number: int = 1) -> [list, list]:
-    """ Move multiple cards from one pile to another """
-    for n in range(number):
-        from_pile, to_pile = move_card(from_pile, to_pile)
-    return from_pile, to_pile
-
-
-def draw_card():
-    """ Move a card from the DESK pile to the HAND pile"""
-    pass
-
-
-def draw_cards():
-    """ Move multiple cards from the DESK pile to the HAND pile"""
-    pass
-
-
-def select_cards(pile_to_select: list, number: int = 1) -> list:
-    """ Select a pile of cards from another pile of cards """
-    # TODO INCOMPLETE!
-    return pile_to_select
-
-
-def discard_cards(hand_pile: list, discard_pile: list, number: int = 1) -> [list, list]:
-    """ Move cards from HAND pile to DISCARD pile"""
-    selection_pile = select_cards(hand_pile)
-    _, discard_pile = move_cards(selection_pile, discard_pile, number)
-    return hand_pile, discard_pile
-
-
 class Card:
     in_play = False
 
@@ -54,7 +16,6 @@ class Card:
 
 
 class Pokemon(Card):
-    pass
 
     def __init__(self, pokemon_name: str = "Pokemon", pokemon_attributes: dict = None):
         super().__init__(pokemon_name, "")
@@ -71,6 +32,7 @@ class Pokemon(Card):
         self.weakness = attributes["weakness"]
         self.retreat_cost = attributes["retreat_cost"]
         self.pokepower = POKEPOWERS[attributes["pokepower"]]
+        self.stage = attributes["stage"]
 
 
 class Trainer(Card):
@@ -80,7 +42,22 @@ class Trainer(Card):
 # class Supporter(Trainer):
 
 class Energy(Card):
-    pass
+
+    def __init__(self, name: str = "Energy", amount: int = 1, basic: bool = True):
+        super().__init__(name, "")
+        self.amount = amount
+        self.basic = basic
+
+
+ENERGIES = {
+    "Psychic": Energy("Psychic"),
+    "Lightning": Energy("Lightning"),
+    "Fire": Energy("Fire"),
+    "Water": Energy("Water"),
+    "Grass": Energy("Grass"),
+    "Fighting": Energy("Fighting"),
+    "Double Colorless": Energy("Double Colorless", amount=2, basic=False),
+}
 
 
 # class Stadium(Trainer):

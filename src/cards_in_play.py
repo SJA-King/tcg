@@ -37,6 +37,15 @@ class ActivePokemon(PokemonInPlay):
         else:
             print("need more energy!")
 
+    def become_active(self):
+        pass
+
+    def evolve(self):
+        pass
+
+    def devolve(self):
+        pass
+
 
 
 class BenchedPokemon(PokemonInPlay):

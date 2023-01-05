@@ -20,7 +20,7 @@ alakazam:
     height: 4'11" (1.5 m)
     weight: 106 lbs. (48.0 kg)
     pokedex_entry: Its brain can outperform a supercomputer. Its intelligence quotient is said to be 5000.
-hitmonchan:
+Hitmonchan:
   type: Fighting
   hp: 70
   attack_1: Jab
@@ -29,7 +29,7 @@ hitmonchan:
   weakness: Psychic
   retreat_cost: 2
   pokepower: None
-electabuzz:
+Electabuzz:
   type: Lightning
   hp: 70
   attack_1: Thundershock
@@ -38,7 +38,7 @@ electabuzz:
   weakness: Fighting
   retreat_cost: 2
   pokepower: None
-farfetchd:
+Farfetchd:
   type: Colorless
   hp: 50
   attack_1: Leek Slap
