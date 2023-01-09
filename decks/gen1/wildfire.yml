@@ -1,11 +1,11 @@
 Pokemon:
-  bas_set:
+  Base:
     Chansey: 4
-  fossil:
+  Fossil:
     Moltres: 4
     Magmar: 4
 Trainers:
-  base_set:
+  Base:
     Pokemon Center: 4
     Energy Removal: 4
     Energy Retrieval: 4

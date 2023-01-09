@@ -1,17 +1,19 @@
 Pokemon:
-  Zapdos: 4 # Base
-  Voltorb: 4 # Base
-  Electrode: 4 # Base
+  Base:
+    Zapdos: 4
+    Voltorb: 4
+    Electrode: 4
 Trainers:
-  Bill: 4
-  Gust Of Wind: 3
-  Professor Oak: 3
-  PlusPower: 4
-  Defender: 4
-  Item Finder: 3
-  Computer Search: 3
-  Energy Retrieval: 4
-  Energy Removal: 4
-  Potion: 4
+  Base:
+    Bill: 4
+    Gust Of Wind: 3
+    Professor Oak: 3
+    PlusPower: 4
+    Defender: 4
+    Item Finder: 3
+    Computer Search: 3
+    Energy Retrieval: 4
+    Energy Removal: 4
+    Potion: 4
 Energies:
   Lightning: 12

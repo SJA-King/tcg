@@ -1,0 +1,19 @@
+Pokemon:
+  Base:
+    Squirtle: 4
+    Blastoise: 3
+  Fossil:
+    Lapras: 2
+    Articuno: 2
+Trainers:
+  Base:
+    Bill: 4
+    Pokemon Breeder: 4
+    Item Finder: 3
+    Gust Of Wind: 3
+    Professor Oak: 4
+    Super Energy Removal: 4
+    PlusPower: 4
+    Computer Search: 4
+Energies:
+  Water: 12

@@ -1,18 +1,18 @@
 Pokemon:
-  base_set:
+  Base:
     Zapdos: 4
     Electrode: 4
-  rocket:
+  Rocket:
     Voltorb: 4
 Trainers:
-  base_set:
+  Base:
     Bill: 4
     Gust Of Wind: 4
     Professor Oak: 4
     PlusPower: 4
     Scoop Up: 4
     Computer Search: 4
-  rocket:
+  Rocket:
     NGR: 4 # Rocket? 'Nightly Garbage Run'
     Challenge!: 4 # Rocket?
 Energies:

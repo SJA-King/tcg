@@ -1,11 +1,11 @@
 Pokemon:
-  bas_set:
+  Base:
     Hitmonchan: 4
     Electabuzz: 4
     Farfetchd: 4
     Chansey: 2
 Trainers:
-  base_set:
+  Base:
     Bill: 4
     Energy Removal: 4
     Gust Of Wind: 3
