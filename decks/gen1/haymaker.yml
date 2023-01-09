@@ -1,0 +1,20 @@
+Pokemon:
+  bas_set:
+    Hitmonchan: 4
+    Electabuzz: 4
+    Farfetchd: 4
+    Chansey: 2
+Trainers:
+  base_set:
+    Bill: 4
+    Energy Removal: 4
+    Gust Of Wind: 3
+    Professor Oak: 3
+    Super Energy Removal: 3
+    PlusPower: 2
+    Scoop Up: 2
+    Computer Search: 1
+Energies:
+  Lightning: 9
+  Fighting: 11
+  Double Colorless: 4

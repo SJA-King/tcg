@@ -1,0 +1,16 @@
+Pokemon:
+  bas_set:
+    Chansey: 4
+  fossil:
+    Moltres: 4
+    Magmar: 4
+Trainers:
+  base_set:
+    Pokemon Center: 4
+    Energy Removal: 4
+    Energy Retrieval: 4
+    Super Energy Removal: 4
+    Scoop Up: 4
+    Item Finder: 4
+Energies:
+  Fire: 24
