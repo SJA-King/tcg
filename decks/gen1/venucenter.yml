@@ -1,0 +1,20 @@
+Pokemon:
+  Base:
+    Bulbasaur: 3
+    Venusaur: 3
+    Scyther: 3 # 9
+  Jungle:
+    Exeggcute: 3
+    Exeggutor: 3 # 15
+Trainers:
+  Base:
+    Item Finder: 3
+    Bill: 4 # 22
+    Pokemon Breeder: 4
+    Gust Of Wind: 2
+    Switch: 2 # 30
+    Professor Oak: 3
+    Pokemon Center: 4
+    Computer Search: 4 # 41
+Energies:
+  Grass: 16 # 57
