@@ -30,8 +30,6 @@ TODO
    4. 4 benched pokemon
    5. 5 benched pokemon
 9. Make all effects
-   1. draw card
-   2. discard card
-   3. etc
+   3. Add to this list
 10. make all attacks in haymaker deck
 11. ~~make all pokepowers~~ (Not needed yet)
