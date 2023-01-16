@@ -19,6 +19,8 @@ class Pokemon(Card):
 
     def __init__(self, pokemon_name: str = "Pokemon", pokemon_attributes: dict = None):
         super().__init__(pokemon_name, "")
+        self.type = None
+        self.hp = None
         self.set_attributes(pokemon_attributes)
 
     def set_attributes(self, attributes: dict = None):

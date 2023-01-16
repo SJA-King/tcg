@@ -2,6 +2,7 @@ from cards import Pokemon, Trainer, Energy
 
 # Only an InPlay Card needs player_1 and player_2
 
+
 class PokemonInPlay(Pokemon):
     can_attack = True
     attached_energies = []

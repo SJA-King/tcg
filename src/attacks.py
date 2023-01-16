@@ -1,6 +1,8 @@
 from common import STATUSES
 from actions import Action
 
+# Attacks build off actions
+
 
 class Attack(Action):
     def __init__(self,

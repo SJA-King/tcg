@@ -1,0 +1,22 @@
+Pokemon:
+  Jungle:
+    Jigglypuff: 4
+    Wigglytuff: 4
+    Lickitung: 4
+Trainers:
+  Base:
+    Clefairy Doll: 4
+    Pluspower: 4
+    Gust Of Wind: 3
+    Super Potion: 3
+    Bill: 4
+    Professor Oak: 3
+    Switch: 3
+    Energy Removal: 4
+    Super Energy Removal: 3
+Energies:
+  Double Colorless: 4
+  Fighting: 13 # doesnt matter too much about the energy
+
+# Alternative!
+# 1. Add in mysterious fossil and aerodactyl to prevent evolutions
