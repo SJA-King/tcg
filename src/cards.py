@@ -42,6 +42,7 @@ class Trainer(Card):
 
 
 # class Supporter(Trainer):
+# TODO
 
 class Energy(Card):
 
@@ -64,5 +65,6 @@ ENERGIES = {
 
 # class Stadium(Trainer):
 #     pass
+# TODO
 
 

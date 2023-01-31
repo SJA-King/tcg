@@ -20,4 +20,4 @@ def get_yaml(filename: str) -> dict:
 # print(haymake_deck)
 # print(get_yaml(haymake_deck))
 
-print(common.get_generations_pokemon("gen1"))
+# print(common.get_generations_pokemon("gen1"))

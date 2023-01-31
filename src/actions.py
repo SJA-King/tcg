@@ -1,10 +1,10 @@
 # an Action is something that effects the game's board state
 
-# class Action:
-#
-#     def __init__(self, name: str = "Action", action: str = None):
-#         self.name = name
-#         self.action = action
+class Action:
+
+    def __init__(self, name: str = "Action", action: str = None):
+        self.name = name
+        self.action = action
 
 
 def move_card(from_pile: list, to_pile: list) -> [list, list]:
@@ -37,5 +37,5 @@ def select_cards(pile_to_select: list, number: int = 1) -> list:
 
 ACTIONS = {
     # TODO Need to make this more generic
-    "Draw": Action("Draw", action=draw_card())
+    # "Draw": Action("Draw", action=draw_card())
 }

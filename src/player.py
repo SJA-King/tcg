@@ -13,7 +13,7 @@ class Player:
         self.hand = None
         self.discard = None
         self.prize_pool = None
-        # self.opponent = None
+        self.opponent = None
 
     # TODO maybe player just talks to game?
     # def set_opponent(self, opponent: Player):
@@ -56,3 +56,7 @@ class Player:
     def take_prize(self):
         prize = self.select_cards(self.prize_pool, number=1)
         self.hand.append(prize)
+
+    def set_opponent(self, opponent: str = None):
+        # TODO either have each player know each other, OR have game know this
+        self.opponent = opponent

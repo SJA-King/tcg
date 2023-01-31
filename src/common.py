@@ -9,6 +9,7 @@ SETS = {
     "gen1": ["base_set", "jungle", "fossil"]
 }
 SETS_PATH = TCG_PATH / "sets"
+DECKS_PATH = TCG_PATH / "decks"
 
 
 
