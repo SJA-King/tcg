@@ -1,9 +1,11 @@
 from common import STATUSES
 from actions import Action
+from tcg.src.gen0.attacks import Attack
+from tcg.src.player import Player
 
 # Attacks build off actions
 
-
+# TODO fix this
 class Attack(Action):
     def __init__(self,
                  name: str = "Attack",
@@ -76,3 +78,8 @@ ATTACKS = {
     "Special Punch": Attack(),
     "None": None
 }
+
+
+def jab(receiver: Player):
+    Attack.active_damage(None, reciever=receiver, damage=20)
+

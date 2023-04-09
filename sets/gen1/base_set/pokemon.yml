@@ -22,8 +22,8 @@ alakazam:
 Hitmonchan:
   type: Fighting
   hp: 70
-  attack_1: Jab
-  attack_2: Special Punch
+  attack_1: jab  # TODO write a func -> Nice String method e.g. first letter is capitialised and _ => " "
+  attack_2: special_punch
   resistance: None
   weakness: Psychic
   retreat_cost: 2

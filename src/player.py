@@ -14,6 +14,7 @@ class Player:
         self.discard = None
         self.prize_pool = None
         self.opponent = None
+        self.active = None
 
     # TODO maybe player just talks to game?
     # def set_opponent(self, opponent: Player):
