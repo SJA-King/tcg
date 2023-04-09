@@ -13,11 +13,15 @@ class Attack:
         reciever.active.take_damage(damage=damage)  # TODO make this method
 
 def benched_damage():
+    pass
 
 def active_status():
+    pass
 
 def set_status_sleep():
+    pass
 def set_status_paralyzed():
+    pass
 def set_status_():
-
+    pass
 
