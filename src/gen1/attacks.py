@@ -81,5 +81,5 @@ ATTACKS = {
 
 
 def jab(receiver: Player):
-    Attack.active_damage(None, reciever=receiver, damage=20)
+    Attack("jab").active_damage(reciever=receiver, damage=20)
 

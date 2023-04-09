@@ -9,6 +9,8 @@ class Action:
 
 def move_card(from_pile: list, to_pile: list) -> [list, list]:
     """ Move a single card from one pile to another """
+    if not from_pile:
+        raise Exception(f"Pile is Null")
     if len(from_pile) < 1:
         raise Exception(f"From pile: {from_pile} is empty!")
     from_pile.pop()

@@ -1,8 +1,8 @@
 # There are two players
 # Each Player has a Deck, Hand, Discard
 # Each Player has cards in play -> Active, Bench, Prize
-from piles import Deck
-from tcg.src.gen0.actions import move_card
+from .piles import Deck
+from .gen0.actions import move_card
 
 
 class Player:
@@ -58,6 +58,8 @@ class Player:
         prize = self.select_cards(self.prize_pool, number=1)
         self.hand.append(prize)
 
-    def set_opponent(self, opponent: str = None):
-        # TODO either have each player know each other, OR have game know this
-        self.opponent = opponent
+    # DOESNT WORK :/
+    # TODO fix
+    # def set_opponent(self, opponent: Player):
+    #     # TODO either have each player know each other, OR have game know this
+    #     self.opponent = opponent
