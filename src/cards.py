@@ -2,8 +2,8 @@
 
 # TODO Note that piles have to be a list of card objects
 
-from attacks import ATTACKS
-from pokepowers import POKEPOWERS
+from tcg.src.gen1.attacks import ATTACKS
+from tcg.src.gen1.pokepowers import POKEPOWERS
 
 
 class Card:
