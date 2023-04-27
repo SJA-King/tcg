@@ -1,3 +1,10 @@
+#
+# Each top level key is the 'name' - then each trainer has a set of keys with values that are imported into its dataclass
+# form e.g. Bill 'move's 2 cards from player:self's position_a:deck to postion_b:hand
+#
+# move: is a number from 1 - 60
+# player: is 'self' or 'other'
+#
 Gust of Wind:
   description: Choose 1 of your opponent's Benched Pokémon and switch it with his or her Active Pokémon.
 Computer Search:
@@ -10,10 +17,23 @@ PlusPower:
   description: Attach PlusPower to your Active Pokémon. At the end of your turn, discard PlusPower. If this Pokémon's attack does damage to the Defending Pokémon (after applying Weakness and Resistance), the attack does 10 more damage to the Defending Pokémon.
 Professor Oak:
   description: Discard your hand, then draw 7 cards.
+  player: self
+  discard: 60  # 60 is used as MAXIMUM, meaning ALL
+  position_a: hand
+  draw: 7  # discard HAS to happen before draw though!
 Bill:
   description: Draw 2 cards.
+  move: 2
+  position_a: deck
+  position_b: hand
+  player: self # not self = other
 Energy Removal:
   description: Choose 1 Energy card attached to 1 of your opponent's Pokémon and discard it.
+  discard: 1
+  player: other
+  position_a: active
+  card_type: energy
+
 Switch:
   description: Switch 1 of your Benched Pokémon with your Active Pokémon.
 Item Finder:
