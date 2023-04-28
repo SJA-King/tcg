@@ -12,20 +12,36 @@ player_two = Player("Simon")
 
 this_game = Game(one=player_one, two=player_two, generation=1)
 
+player_two.deck = ["f", "g"]
+
 # Import the cards for this_game to use
 
 # Set decklist for player 1
 # Set decklist for player 2
 
-while this_game.total_turns < MAX_TURNS:
-    print(f"TURN: {this_game.total_turns}")
-    print(this_game.player_turn())
-    this_game.swap_player()
-    this_game.current_player.draw_card()
+# while this_game.total_turns < MAX_TURNS:
+#     print(f"TURN: {this_game.total_turns}")
+#     print(this_game.player_turn())
+#     this_game.swap_player()
+#     this_game.current_player.draw_card()
 
     # Wait for action!
 
     # TODO the rest!
+
+this_game.player_1.deck = ["a", "b", "c", "d"]
+this_game.player_1.hand = ["e"]
+
+for n in range(4):
+    this_game.player_1.hand.append(this_game.player_1.deck[0])
+    this_game.player_1.deck.pop(0)
+    print(f"P1: \n-- Hand - {this_game.player_1.hand}\n-- Deck - {this_game.player_1.deck}")
+
+
+this_game.player_2.deck = ["q", "p", "r", "s"]
+
+
+
 
 
 # Below needs to be added
