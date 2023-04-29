@@ -9,8 +9,8 @@ class Player:
 
     def __init__(self, name):
         self.name = name
-        self.deck = None
-        self.hand = None
+        self.deck = []
+        self.hand = []
         self.discard = None
         self.prize_pool = None
         self.opponent = None

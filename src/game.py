@@ -5,14 +5,11 @@ import pathlib
 from .player import Player
 # from common import get_yml_data, SETS_PATH, SETS, DECKS_PATH
 # from cards import ENERGIES
-
+from .gen0.actions import move_cards_between_piles
 DECKS = {
     "haymaker": None,
     "buzzapdos": None
 }
-
-
-
 
 
 class Game:
@@ -22,25 +19,35 @@ class Game:
         # self.player_1.set_opponent(two)
         self.player_2 = two
         # self.player_1.set_opponent(one)
-        self.players = {one: self.player_1, two: self.player_2}
+        # self.players = {one: self.player_1, two: self.player_2}
         self.generation = generation
         # self.legal_cards_sets = legal_card_sets
         self.legal_cards = None
         self.decks_available = None
         self.total_turns = 0
         self.current_player = None
+        self.other_player = None
 
     def swap_player(self):
         if self.total_turns % 2 == 0:
             self.current_player = self.player_1
+            self.other_player = self.player_2
         else:
             self.current_player = self.player_2
+            self.other_player = self.player_1
         self.total_turns += 1
 
     def player_turn(self):
         if self.current_player:
             return self.current_player.name
         return None
+
+    def turn_draw_card(self):
+        if self.current_player.deck:
+            move_cards_between_piles(from_pile=self.current_player.deck, to_pile=self.current_player.hand)
+            return True
+        return False
+
     # def get_opponent(self, ):
     #     return
 

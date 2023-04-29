@@ -12,16 +12,13 @@ from ..cards import Card
 def move_cards_between_piles(from_pile: list[Card], to_pile: list[Card], number: int = 1) -> [list[Card], list[Card]]:
     """ Move 'number' of Cards from one Pile to another """
     if not from_pile:
-        raise Exception(f"Pile is Null")
-    if len(from_pile) < 1:
-        raise Exception(f"From pile: {from_pile} is empty!")
+        raise Exception(f"Pile '{from_pile}' is Empty")
     if number < 1:
-        # TODO add logging of "empty" move!
-        return from_pile, to_pile
+        raise Exception(f"Incorrect number of Cards to move = '{number}'!")
 
     for n in range(number):
-        from_pile.pop()
         to_pile.append(from_pile[0])
+        from_pile.pop(0)
 
     return from_pile, to_pile
 
