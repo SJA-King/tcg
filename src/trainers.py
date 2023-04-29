@@ -1,5 +1,5 @@
 
-from ..cards import Card
+from tcg.src.cards import Card
 
 # Gust of Wind:
 #   description: Choose 1 of your opponent's Benched Pokémon and switch it with his or her Active Pokémon.

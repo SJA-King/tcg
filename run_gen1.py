@@ -16,7 +16,7 @@ player_one.deck = [Card(name="E"), Card(name="F")]
 
 while this_game.total_turns < MAX_TURNS:
 
-    this_game.swap_player()
+    this_game.begin_turn()
     # TODO Put below print as logging in swap_player
     print(f"Turn: {this_game.total_turns}, Player: {this_game.player_turn()} ")
 
