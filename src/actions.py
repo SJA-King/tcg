@@ -1,7 +1,7 @@
 # an Action is something that effects the game's board state
 
 # An action handles contents of other classes, i.e. not a Player, but a players deck, hand, etc
-from tcg.src.cards import Card
+from .cards import Card
 # class Action:
 #
 #     def __init__(self, name: str = "Action", action: str = None):

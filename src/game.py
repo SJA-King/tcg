@@ -3,7 +3,7 @@
 from .player import Player
 # from common import get_yml_data, SETS_PATH, SETS, DECKS_PATH
 # from cards import ENERGIES
-from tcg.src.actions import move_cards_between_piles
+from .actions import move_cards_between_piles
 DECKS = {
     "haymaker": None,
     "buzzapdos": None
@@ -20,6 +20,7 @@ class Game:
         self.player_2 = two
         # self.player_1.set_opponent(one)
         # TODO set this based on coin flip!
+        # TODO make this a dict 'active' 'other' are the keys
         self.players = [self.player_1, self.player_2]
         self.generation = generation
         # self.legal_cards_sets = legal_card_sets
@@ -44,7 +45,8 @@ class Game:
         # self.total_turns += 1
 
     def get_active_player(self):
-        return self.players[0]
+        # TODO this is broken!
+        return self.players[0].name
 
     def get_other_player(self):
         return self.players[1]

@@ -18,7 +18,7 @@ while this_game.total_turns < MAX_TURNS:
 
     this_game.begin_turn()
     # TODO Put below print as logging in swap_player
-    print(f"Turn: {this_game.total_turns}, Player: {this_game.player_turn()} ")
+    print(f"Turn: {this_game.total_turns}, Player: {this_game.get_active_player()} ")
 
     if not this_game.turn_draw_card():
         print(f"Player '{this_game.current_player.name}' has no cards in deck! '{this_game.other_player.name}' Wins!")
