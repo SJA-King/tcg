@@ -2,11 +2,40 @@
 
 # An action handles contents of other classes, i.e. not a Player, but a players deck, hand, etc
 from .cards import Card
-# class Action:
-#
-#     def __init__(self, name: str = "Action", action: str = None):
-#         self.name = name
-#         self.action = action
+
+import random
+
+
+def flip_coin() -> bool:
+    """
+    1 = Heads
+    2 = Tails
+    :return:
+    """
+    if random.randint(1, 2) == 1:
+        return True
+    return False
+
+
+def flip_heads() -> bool:
+    return flip_coin()
+
+
+# Unlikely to be needed but still useful
+def flip_tails() -> bool:
+    return not flip_coin()
+
+
+def flip_multiple_heads(number: int = 1) -> int:
+    if number < 1:
+        raise Exception(f"Cant flip < 1 HEADS!")
+
+    counter = 0
+    for _ in range(number):
+        if flip_heads():
+            counter += 1
+
+    return counter
 
 
 def move_cards_between_piles(from_pile: list[Card], to_pile: list[Card], number: int = 1) -> [list[Card], list[Card]]:

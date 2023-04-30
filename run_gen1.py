@@ -1,27 +1,32 @@
 from src.game import Game
 from src.player import Player
 from src.cards import Card
+from src.actions import flip_heads
 
+import logging
 from typing import final
+
+logging.basicConfig(level=logging.INFO)
 
 MAX_TURNS: final(int) = 999
 
 player_one = Player("Bethany")
 player_two = Player("Simon")
 
+if not flip_heads():
+    player_one, player_two = player_two, player_one
+
 this_game = Game(one=player_one, two=player_two, generation=1)
 
 player_two.deck = [Card(name="A"), Card(name="B"), Card(name="C"), Card(name="D")]
 player_one.deck = [Card(name="E"), Card(name="F")]
 
-while this_game.total_turns < MAX_TURNS:
+while this_game.turns < MAX_TURNS:
 
     this_game.begin_turn()
-    # TODO Put below print as logging in swap_player
-    print(f"Turn: {this_game.total_turns}, Player: {this_game.get_active_player()} ")
 
     if not this_game.turn_draw_card():
-        print(f"Player '{this_game.current_player.name}' has no cards in deck! '{this_game.other_player.name}' Wins!")
+        print(f"Player '{this_game.active_player.name}' has no cards in deck! '{this_game.other_player.name}' Wins!")
         break
 
     # Wait for action!

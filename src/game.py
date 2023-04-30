@@ -1,4 +1,5 @@
 # This is the game!
+import logging
 
 from .player import Player
 # from common import get_yml_data, SETS_PATH, SETS, DECKS_PATH
@@ -15,41 +16,43 @@ DECKS = {
 class Game:
 
     def __init__(self, one: Player, two: Player, generation: int = 0):#, legal_card_sets: [str] = None):
-        self.player_1 = one
-        # self.player_1.set_opponent(two)
-        self.player_2 = two
-        # self.player_1.set_opponent(one)
-        # TODO set this based on coin flip!
+        self._player_1 = one
+        self._player_2 = two
+        logging.info(f"Player: {self.player_one.name} will go first!")
         # TODO make this a dict 'active' 'other' are the keys
-        self.players = [self.player_1, self.player_2]
+        self._players = [self._player_1, self._player_2]
         self.generation = generation
-        # self.legal_cards_sets = legal_card_sets
         self.legal_cards = None
         self.decks_available = None
-        self.total_turns = 0
-        self.current_player = None
-        self.other_player = None
+        self._total_turns = 0
+
+    @property
+    def player_one(self):
+        return self._player_1
+
+    @property
+    def player_two(self):
+        return self._player_2
+
+    @property
+    def turns(self):
+        return self._total_turns
 
     def begin_turn(self):
         self.swap_player()
-        self.total_turns += 1
+        self._total_turns += 1
+        logging.debug(f"Turn: {self._total_turns}, Player: {self.active_player.name} ")
 
-    def swap_player(self):
-        self.players = self.players.reverse()
-        # if self.total_turns % 2 == 0:
-        #     self.current_player = self.player_1
-        #     self.other_player = self.player_2
-        # else:
-        #     self.current_player = self.player_2
-        #     self.other_player = self.player_1
-        # self.total_turns += 1
+    def swap_player(self) -> None:
+        self._players.reverse()
 
-    def get_active_player(self):
-        # TODO this is broken!
-        return self.players[0].name
+    @property
+    def active_player(self) -> Player:
+        return self._players[0]
 
-    def get_other_player(self):
-        return self.players[1]
+    @property
+    def other_player(self) -> Player:
+        return self._players[1]
 
     # @property
     # def active_player(self):
@@ -58,8 +61,8 @@ class Game:
     #     # return None
 
     def turn_draw_card(self):
-        if self.current_player.deck:
-            move_cards_between_piles(from_pile=self.current_player.deck, to_pile=self.current_player.hand)
+        if self.active_player.deck:
+            move_cards_between_piles(from_pile=self.active_player.deck, to_pile=self.active_player.hand)
             return True
         return False
 
