@@ -48,6 +48,13 @@ def professor_oak():
 #   discard: 60  # 60 is used as MAXIMUM, meaning ALL
 #   position_a: hand
 #   draw: 7  # discard HAS to happen before draw though!
+#
+# Each top level key is the 'name' - then each trainer has a set of keys with values that are imported into its dataclass
+# form e.g. Bill 'move's 2 cards from player:self's position_a:deck to postion_b:hand
+#
+# move: is a number from 1 - 60
+# player: is 'self' or 'other'
+#
 # Bill:
 #   description: Draw 2 cards.
 #   move: 2
@@ -67,6 +74,7 @@ def professor_oak():
 #   description: Discard 2 of the other cards from your hand in order to put a Trainer card from your discard pile into your hand.
 # Super Energy Removal:
 #   description: Discard 1 Energy card attached to 1 of your own Pokémon in order to choose 1 of your opponent's Pokémon and up to 2 Energy cards attached to it. Discard those Energy cards.
+# Use the keywords? Draw, Switch, Choose, Discard, Attach, etc?
 
 #
 # Fossil Trainers

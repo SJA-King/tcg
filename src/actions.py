@@ -34,6 +34,9 @@ def flip_multiple_heads(number: int = 1) -> int:
     return counter
 
 
+# TODO make a check_pile()
+
+# TODO change to put on bottom or append to pile?
 def move_cards_between_piles(from_pile: list[Card], to_pile: list[Card], number: int = 1) -> [list[Card], list[Card]]:
     """ Move 'number' of Cards from one Pile to another """
     if not from_pile:
@@ -41,7 +44,7 @@ def move_cards_between_piles(from_pile: list[Card], to_pile: list[Card], number:
     if number < 1:
         raise Exception(f"Incorrect number of Cards to move = '{number}'!")
 
-    for n in range(number):
+    for _ in range(number):
         to_pile.append(from_pile[0])
         from_pile.pop(0)
 
@@ -49,6 +52,13 @@ def move_cards_between_piles(from_pile: list[Card], to_pile: list[Card], number:
 
 
 # TODO Do piles need to be objects?
+
+
+def put_card_on_top_of_pile(from_pile: list[Card], to_pile: list[Card], number: int = 1):
+    for _ in range(number):
+        to_pile = [from_pile[0]] + to_pile
+        from_pile.pop(0)
+
 
 
 def draw_cards(from_deck: list, to_hand: list, number: int = 1):  # DO I HAVE TO return?
