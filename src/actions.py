@@ -6,7 +6,7 @@ from .cards import Card
 import random
 
 
-def flip_coin() -> bool:
+def flip_heads() -> bool:
     """
     1 = Heads
     2 = Tails
@@ -17,13 +17,9 @@ def flip_coin() -> bool:
     return False
 
 
-def flip_heads() -> bool:
-    return flip_coin()
-
-
 # Unlikely to be needed but still useful
 def flip_tails() -> bool:
-    return not flip_coin()
+    return not flip_heads()
 
 
 def flip_multiple_heads(number: int = 1) -> int:

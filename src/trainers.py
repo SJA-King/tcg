@@ -1,5 +1,6 @@
 
-from tcg.src.cards import Card
+from .cards import Card
+from .actions import flip_heads
 
 # Gust of Wind:
 #   description: Choose 1 of your opponent's Benched Pokémon and switch it with his or her Active Pokémon.
@@ -66,3 +67,50 @@ def professor_oak():
 #   description: Discard 2 of the other cards from your hand in order to put a Trainer card from your discard pile into your hand.
 # Super Energy Removal:
 #   description: Discard 1 Energy card attached to 1 of your own Pokémon in order to choose 1 of your opponent's Pokémon and up to 2 Energy cards attached to it. Discard those Energy cards.
+
+#
+# Fossil Trainers
+#
+#
+# Mr Fuji:
+#   description: Choose a Pokémon on your Bench. Shuffle it and any cards attached to it into your deck.
+# Energy Search:
+#   description: Search your deck for a basic Energy card and put it into your hand. Shuffle your deck afterward.
+def do_gambler():
+    """
+    Gambler:
+      description: Shuffle your hand into your deck. Flip a coin. If heads, draw 8 cards. If tails, draw 1 card.
+    :return:
+    """
+    shuffle_deck()
+    if flip_heads():
+        draw_cards(8)
+    else:
+        draw_cards(1)
+
+def do_recycle():
+    """
+    Recycle:
+        description: Flip a coin. If heads, put a card in your discard pile on top of your deck.
+    :return:
+    """
+    if flip_heads():
+        selected_cards = select_cards(discard, number=1)
+        # TODO Make a put on top of pile AND put on bottom of pil
+        # TODO make a put on top of deck
+        put_on_top_of_deck(selected_cards)
+
+def do_mysterious_fossil():
+    """
+    Mysterious Fossil:
+      description: Play Mysterious Fossil as if it were a Basic Pokémon. While in play, Mysterious Fossil counts as a Pokémon (instead of a Trainer card). Mysterious Fossil has no attacks, can't retreat, and can't be Asleep, Confused, Paralyzed, or Poisoned. If Mysterious Fossil is Knocked Out, it doesn't count as a Knocked Out Pokémon. (Discard it anyway.) At any time during your turn before your attack, you may discard Mysterious Fossil from play.
+    """
+
+#
+# Jungle Trainer
+#
+def do_poke_ball():
+    """
+    Poke Ball:
+        text:
+    """

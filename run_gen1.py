@@ -1,7 +1,7 @@
 from src.game import Game
 from src.player import Player
 from src.cards import Card
-from src.actions import flip_heads
+from src.actions import flip_heads, flip_multiple_heads
 
 import logging
 from typing import final
@@ -28,6 +28,8 @@ while this_game.turns < MAX_TURNS:
     if not this_game.turn_draw_card():
         print(f"Player '{this_game.active_player.name}' has no cards in deck! '{this_game.other_player.name}' Wins!")
         break
+
+    print(flip_multiple_heads(3))
 
     # Wait for action!
 
