@@ -83,6 +83,19 @@ def select_cards(pile_to_select: list, number: int = 1) -> list:
     return pile_to_select
 
 
+# TODO make an action_builder using the string from the yml
+# TODO make the build check the function exists as well!
+# TODO use a function factory!!!
+#
+# >>> def func_builder(name):
+# ...  def f():
+# ...   # multiline code here, using name, and using the logic you have
+# ...   return name
+# ...  return f
+# ...
+# >>> func_builder("ciao")()
+# 'ciao'
+
 
 
 

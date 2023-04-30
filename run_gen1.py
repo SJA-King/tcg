@@ -31,6 +31,9 @@ while this_game.turns < MAX_TURNS:
 
     print(flip_multiple_heads(3))
 
+    # x = "flip_multiple_heads"
+    # print(eval(x(3)))
+
     # Wait for action!
 
     # TODO the rest!
