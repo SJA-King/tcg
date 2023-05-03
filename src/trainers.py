@@ -2,14 +2,23 @@
 from .cards import Card
 from .actions import flip_heads
 
+
+
+# TODO need a trainer class i think
+
 # Gust of Wind:
 #   description: Choose 1 of your opponent's Benched Pokémon and switch it with his or her Active Pokémon.
+
+
+
+
 
 def gust_of_wind():
 
     # TODO waste card if none on bench
     # TODO add a select bench position
     move_pokemon(self.other.active, self.other.bench)
+
 
 def computer_search():
 
@@ -29,6 +38,7 @@ def computer_search():
 
 # Scoop Up:
 #   description: Choose 1 of your Pokémon in play and return its Basic Pokémon card to your hand. (Discard all cards attached to that card.)
+# TODO note its the basic card!!
 
 
 # Defender:

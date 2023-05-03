@@ -1,7 +1,8 @@
 from src.game import Game
 from src.player import Player
-from src.cards import Card
+from src.cards import Card, Energy, ENERGIES, Trainer, Pokemon
 from src.actions import flip_heads, flip_multiple_heads
+
 
 import logging
 from typing import final
@@ -18,16 +19,35 @@ if not flip_heads():
 
 this_game = Game(one=player_one, two=player_two, generation=1)
 
-player_two.deck = [Card(name="A"), Card(name="B"), Card(name="C"), Card(name="D")]
-player_one.deck = [Card(name="E"), Card(name="F")]
+some_trainers = [Trainer() for _ in range(20)]
+some_pokemon = [Pokemon(name=i) for i in "jklhjhasdxzputmnsdfq"]
+some_energy = [Energy(name="Electric") for _ in range(20)]
+
+player_two.deck = some_trainers + some_pokemon + some_energy
+player_one.deck = some_trainers + some_pokemon + some_energy
+
+# TODO shuffle deck
+
+# TODO draw starting hands
+## TODO no Pokemon, shuffle then redraw, opponent +1 draw (choice!)
+
+# TODO draw prizes when hands are acceptable
+
+# TODO set active pokemon
+
+# TODO
 
 while this_game.turns < MAX_TURNS:
 
+    # TODO should this be at the end?
     this_game.begin_turn()
 
-    if not this_game.turn_draw_card():
-        print(f"Player '{this_game.active_player.name}' has no cards in deck! '{this_game.other_player.name}' Wins!")
+    if this_game.active_player.has_deck():
+        print(f"Player '{this_game.other_player.name}' Wins!")
         break
+
+    this_game.active_player.draw_card()
+    # if not this_game.turn_draw_card():
 
     print(flip_multiple_heads(3))
 
