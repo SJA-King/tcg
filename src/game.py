@@ -60,11 +60,11 @@ class Game:
     #     return self.current_player.name
     #     # return None
 
-    def turn_draw_card(self):
-        if self.active_player.deck:
-            move_cards_between_piles(from_pile=self.active_player.deck, to_pile=self.active_player.hand)
-            return True
-        return False
+    # def turn_draw_card(self):
+    #     if self.active_player.deck:
+    #         move_cards_between_piles(from_pile=self.active_player.deck, to_pile=self.active_player.hand)
+    #         return True
+    #     return False
 
     # def get_opponent(self, ):
     #     return

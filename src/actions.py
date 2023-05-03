@@ -1,9 +1,10 @@
 # an Action is something that effects the game's board state
 
 # An action handles contents of other classes, i.e. not a Player, but a players deck, hand, etc
-from .cards import Card
+from .cards import Card, Pokemon, Trainer, Energy
 
 import random
+from typing import Union, Type
 
 
 def flip_heads() -> bool:
@@ -24,7 +25,7 @@ def flip_tails() -> bool:
 
 def flip_multiple_heads(number: int = 1) -> int:
     if number < 1:
-        raise Exception(f"Cant flip < 1 HEADS!")
+        raise Exception(f"Cant flip <1 COINS!")
 
     counter = 0
     for _ in range(number):
@@ -74,7 +75,13 @@ def draw_card(self, number: int = 1):
     move_cards_between_piles(self.current_player.deck, self.current_player.hand, number)
 
 
-
+def check_card_type_in_pile(card_type: Type[Card], pile: list[Card]):
+    if not pile:
+        raise Exception(f"Empty Pile!")
+    for card in pile:
+        if card_type == type(card):
+            return True
+    return False
 
 
 def select_cards(pile_to_select: list, number: int = 1) -> list:

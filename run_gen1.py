@@ -19,19 +19,28 @@ if not flip_heads():
 
 this_game = Game(one=player_one, two=player_two, generation=1)
 
-some_trainers = [Trainer() for _ in range(20)]
-some_pokemon = [Pokemon(name=i) for i in "jklhjhasdxzputmnsdfq"]
+some_trainers = [Trainer(name=i) for i in "qwertyuiopqwertyuiopqwertyuiopqwert"]
+# some_pokemon = [Pokemon(name=i) for i in "asdfghjklasdfghjklas"]
+some_pokemon = [Pokemon(name=i) for i in "asdfg"]
 some_energy = [Energy(name="Electric") for _ in range(20)]
 
 player_two.deck = some_trainers + some_pokemon + some_energy
 player_one.deck = some_trainers + some_pokemon + some_energy
 
-# TODO shuffle deck
+player_one.draw_hand()
+player_two.draw_hand()
+
+print(player_one.show_hand())
+print(player_two.show_hand())
+
+print(player_two.has_pokemon_in_hand())
+print(player_one.has_pokemon_in_hand())
 
 # TODO draw starting hands
 ## TODO no Pokemon, shuffle then redraw, opponent +1 draw (choice!)
 
 # TODO draw prizes when hands are acceptable
+player_two.draw_prizes()
 
 # TODO set active pokemon
 
@@ -42,14 +51,15 @@ while this_game.turns < MAX_TURNS:
     # TODO should this be at the end?
     this_game.begin_turn()
 
-    if this_game.active_player.has_deck():
+    if this_game.active_player.has_empty_deck():
         print(f"Player '{this_game.other_player.name}' Wins!")
         break
 
     this_game.active_player.draw_card()
+    # print(this_game.active_player.hand)
     # if not this_game.turn_draw_card():
 
-    print(flip_multiple_heads(3))
+    # print(flip_multiple_heads(3))
 
     # x = "flip_multiple_heads"
     # print(eval(x(3)))

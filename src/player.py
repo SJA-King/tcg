@@ -3,44 +3,82 @@
 # Each Player has cards in play -> Active, Bench, Prize
 from .piles import Deck
 # from .gen0.actions import move_card
+from .cards import Card, Trainer, Pokemon, Energy
+from .actions import move_cards_between_piles, draw_cards, check_card_type_in_pile
+
+from random import shuffle
+from typing import Union, Type
 
 
 class Player:
 
     def __init__(self, name):
         self._name = name
-        self._deck = []
-        self._hand = []
-        self._discard = []
-        self._prize_pool = []
+        self._deck: [Union[Trainer, Pokemon, Energy]] = []
+        self._hand: [Union[Trainer, Pokemon, Energy]] = []
+        self._discard: [Union[Trainer, Pokemon, Energy]] = []
+        # TODO make Game control the prize pools? so a player cant see them?
+        self._prize_pool: [Union[Trainer, Pokemon, Energy]] = []
         self._active = None
 
     @property
     def name(self):
         return self._name
 
-    # TODO maybe player just talks to game?
-    # def set_opponent(self, opponent: Player):
-    #     self.opponent = opponent
+    @property
+    def deck(self):
+        return self._deck
 
-    def set_deck(self, cards_in_deck):
-        self._deck = Deck(cards_in_deck)
+    @property
+    def hand(self):
+        return self._hand
+
+    # TODO make this only settable once!
+    # TODO add a lock?
+    @deck.setter
+    def deck(self, chosen_deck: list):
+        if len(chosen_deck) != 60:
+            raise Exception(f"Deck size ({chosen_deck}) is incorrect")
+        if not check_card_type_in_pile(card_type=Pokemon, pile=chosen_deck):
+            raise Exception(f"Deck must have at least one {type(Pokemon)}!")
+        # TODO check pokemon is basic as well otherwise ERROR!
+        self._deck = chosen_deck
+        self.shuffle_deck()
 
     def draw_cards(self, number: int):
         """ Move an amount of cards from player DESK pile to player HAND pile"""
-        if number < 1:
-            raise Exception(f"Cards to draw must be greater than 0!")
-        for _ in range(number):
-            self.draw_card()
+        draw_cards(from_deck=self._deck, to_hand=self._hand, number=number)
 
     def draw_card(self):
         """ Move a card from the DESK pile to the HAND pile"""
-        # self.deck, self.hand = \
-        move_card(from_pile=self.deck, to_pile=self.hand)
+        draw_cards(from_deck=self._deck, to_hand=self._hand)
 
-    def draw_starting_hand(self):
-        self.draw_cards(5)
-    #
+    def shuffle_deck(self):
+        shuffle(self._deck)
+
+    def draw_hand(self):
+        self.draw_cards(7)
+
+    def remake_deck(self):
+        """
+        Put all cards back into deck
+        """
+        self._deck = self._deck + self._hand + self._prize_pool + self._discard
+        self.shuffle_deck()
+
+    def redraw_hand(self):
+        self.remake_deck()
+        self.draw_hand()
+
+    def show_hand(self):
+        cards_in_hand = ""
+        for i_card in self._hand:
+            cards_in_hand += f"{i_card.name}, "
+        return cards_in_hand
+
+    def has_pokemon_in_hand(self) -> bool:
+        return check_card_type_in_pile(card_type=Pokemon, pile=self._hand)
+
     def select_cards(self, pile_to_select_from, number: int = 1):
     #     TODO get player to pick
     #     return [pile_to_select_from[0]]
@@ -63,14 +101,17 @@ class Player:
         # TODO discard all from a PokemonInPlay
         raise NotImplementedError
 
+    def draw_prizes(self):
+
+
     def take_prize(self):
         prize = self.select_cards(self._prize_pool, number=1)
         self._hand.append(prize)
 
-    def has_deck(self) -> bool:
-        if len(self._deck) > 0:
+    def has_empty_deck(self) -> bool:
+        if len(self._deck) < 1:
+            print(f"{self.name}' has no cards in deck!")
             return True
-        print(f"{self.name}' has no cards in deck!")
         return False
 
     # DOESNT WORK :/
