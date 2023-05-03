@@ -7,10 +7,10 @@ class Attack:
     def __init__(self, name: str):
         __name__ = name
 
-    def active_damage(self, reciever: Player, damage: int): # TODO add damage type!
+    def active_damage(self, receiver: Player, damage: int): # TODO add damage type!
         if damage % 10 != 0:
             raise Exception(f"Damage: {damage} ISNT multiple of ten")
-        reciever.active.take_damage(damage=damage)  # TODO make this method
+        receiver.active.take_damage(damage=damage)  # TODO make this method
 
 def benched_damage():
     pass

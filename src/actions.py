@@ -60,9 +60,9 @@ def put_card_on_top_of_pile(from_pile: list[Card], to_pile: list[Card], number: 
         from_pile.pop(0)
 
 
-
 def draw_cards(from_deck: list, to_hand: list, number: int = 1):  # DO I HAVE TO return?
     move_cards_between_piles(from_deck, to_hand, number)
+
 
 def gain_prize(from_prizes: list, to_hand: list):
     move_cards_between_piles(from_prizes, to_hand)
