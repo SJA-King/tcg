@@ -2,6 +2,7 @@
 
 # An action handles contents of other classes, i.e. not a Player, but a players deck, hand, etc
 from .cards import Card, Pokemon, Trainer, Energy
+from .piles import Deck, Hand, Discard, Pile, Prizes
 
 import random
 from typing import Union, Type
@@ -52,7 +53,66 @@ def move_cards_between_piles(from_pile: list[Card], to_pile: list[Card], number:
     return from_pile, to_pile
 
 
-# TODO Do piles need to be objects?
+def move_cards(from_pile: Pile, to_pile: Pile, number: int = 1) -> None:
+    """ Move 'number' of Cards from one Pile to another """
+    if not from_pile:
+        print("From Pile is Empty!")
+        return
+        # raise Exception(f"Pile '{from_pile}' is Empty")
+    if number < 1:
+        raise Exception(f"Cant move less than 1 Cards - '{number}'!")
+
+    # TODO Add if number >= 60 that you just add them together dont loop!
+
+    for _ in range(number):
+        to_pile.cards.append(from_pile.cards[0])
+        from_pile.cards.pop(0)
+
+
+def draw_cards(from_deck: Deck, to_hand: Hand, number: int = 1):
+    move_cards(from_pile=from_deck, to_pile=to_hand, number=number)
+
+
+def check_hand_for_pokemon(hand: Hand):
+    return check_card_type_in_pile(card_type=Pokemon, pile=hand)
+
+
+def check_hand_for_basic_pokemon():
+    raise NotImplementedError
+
+
+def draw_starting_hand(from_deck: Deck, to_hand: Hand):
+    move_cards(from_pile=from_deck, to_pile=to_hand, number=7)
+
+
+def redraw_starting_hand(deck: Deck, hand: Hand, discard: Discard, prizes: Prizes):
+    move_cards(from_pile=hand, to_pile=deck, number=60)
+    move_cards(from_pile=discard, to_pile=deck, number=60)
+    move_cards(from_pile=prizes, to_pile=deck, number=60)
+
+    deck.shuffle()
+    deck.shuffle()
+
+    draw_starting_hand(from_deck=deck, to_hand=hand)
+
+
+def discard_from_hand(from_hand: Hand, to_discard: Discard, number: int = 1):
+    move_cards(from_pile=from_hand, to_pile=to_discard, number=number)
+
+
+def discard_from_deck(from_deck: Deck, to_discard: Discard, number: int = 1):
+    move_cards(from_pile=from_deck, to_pile=to_discard, number=number)
+
+
+def draw_prizes(from_deck: Deck, to_prizes: Prizes):
+    move_cards(from_pile=from_deck, to_pile=to_prizes, number=6)
+
+
+def take_prize(from_prizes: Prizes, to_hand: Hand, number: int = 1):
+    move_cards(from_pile=from_prizes, to_pile=to_hand, number=number)
+
+
+
 
 
 def put_card_on_top_of_pile(from_pile: list[Card], to_pile: list[Card], number: int = 1):
@@ -61,8 +121,8 @@ def put_card_on_top_of_pile(from_pile: list[Card], to_pile: list[Card], number: 
         from_pile.pop(0)
 
 
-def draw_cards(from_deck: list, to_hand: list, number: int = 1):  # DO I HAVE TO return?
-    move_cards_between_piles(from_deck, to_hand, number)
+# def draw_cards(from_deck: list, to_hand: list, number: int = 1):  # DO I HAVE TO return?
+#     move_cards_between_piles(from_deck, to_hand, number)
 
 
 def gain_prize(from_prizes: list, to_hand: list):
@@ -75,14 +135,18 @@ def draw_card(self, number: int = 1):
     move_cards_between_piles(self.current_player.deck, self.current_player.hand, number)
 
 
-def check_card_type_in_pile(card_type: Type[Card], pile: list[Card]):
+def check_card_type_in_pile(card_type: Type[Card], pile: Pile):
     if not pile:
         print("Empty Pile")
         return False
-    for card in pile:
+    for card in pile.cards:
         if card_type == type(card):
             return True
     return False
+
+
+def check_pokemon_is_basic(pile: Pile):
+    raise NotImplementedError
 
 
 def select_cards(pile_to_select: list, number: int = 1) -> list:

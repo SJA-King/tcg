@@ -1,7 +1,8 @@
 from src.game import Game
 from src.player import Player
 from src.cards import Card, Energy, ENERGIES, Trainer, Pokemon
-from src.actions import flip_heads, flip_multiple_heads
+from src.actions import flip_heads, flip_multiple_heads, draw_starting_hand, redraw_starting_hand
+from src.piles import Deck
 
 
 import logging
@@ -11,25 +12,28 @@ logging.basicConfig(level=logging.INFO)
 
 MAX_TURNS: final(int) = 100
 
-player_one = Player("Bethany")
-player_two = Player("Simon")
+some_trainers = [Trainer(name=i) for i in "qwertyuiopqwertyuiopqwertyuiopqwert"]
+# some_pokemon = [Pokemon(name=i) for i in "asdfghjklasdfghjklas"]
+# TODO temp small amount of Pokemon to make things easy to test
+some_pokemon = [Pokemon(name=i) for i in "asdfg"]
+some_energy = [Energy(name="Electric") for _ in range(20)]
+
+a_deck = some_trainers + some_pokemon + some_energy
+
+player_one = Player("Bethany", chosen_deck=a_deck)
+player_two = Player("Simon", chosen_deck=a_deck)
 
 if not flip_heads():
     player_one, player_two = player_two, player_one
 
 this_game = Game(one=player_one, two=player_two, generation=1)
 
-some_trainers = [Trainer(name=i) for i in "qwertyuiopqwertyuiopqwertyuiopqwert"]
-# some_pokemon = [Pokemon(name=i) for i in "asdfghjklasdfghjklas"]
-some_pokemon = [Pokemon(name=i) for i in "asdfg"]
-some_energy = [Energy(name="Electric") for _ in range(20)]
-
-player_two.deck = some_trainers + some_pokemon + some_energy
-player_one.deck = some_trainers + some_pokemon + some_energy
-
-player_one.draw_hand()
-player_two.draw_hand()
-
+# TODO change these actions to the player?
+draw_starting_hand(from_deck=player_one.deck, to_hand=player_one.hand)
+draw_starting_hand(from_deck=player_two.deck, to_hand=player_two.hand)
+# player_one.draw_hand()
+# player_two.draw_hand()
+# TODO will break from here!!!!!!!
 while not player_one.has_pokemon_in_hand() or not player_two.has_pokemon_in_hand():
 
     if not player_one.has_pokemon_in_hand():

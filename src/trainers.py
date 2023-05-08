@@ -1,6 +1,6 @@
 
-from .cards import Card, play_card
-from .actions import flip_heads
+from cards import Card, play_card
+from actions import flip_heads
 
 
 def play_trainer(card_name: str) -> None:
@@ -10,9 +10,6 @@ def play_trainer(card_name: str) -> None:
 
 # Gust of Wind:
 #   description: Choose 1 of your opponent's Benched Pokémon and switch it with his or her Active Pokémon.
-
-
-
 
 
 def gust_of_wind():
