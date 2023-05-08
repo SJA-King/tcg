@@ -1,6 +1,11 @@
 # Make generic attacks in here, then in the gens they make them specific
 # e.g.
 from tcg.src.player import Player
+from .cards import Card, play_card
+
+
+def play_attack(card_name: str) -> None:
+    play_card(card_name)
 
 
 class Attack:

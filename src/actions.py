@@ -77,7 +77,8 @@ def draw_card(self, number: int = 1):
 
 def check_card_type_in_pile(card_type: Type[Card], pile: list[Card]):
     if not pile:
-        raise Exception(f"Empty Pile!")
+        print("Empty Pile")
+        return False
     for card in pile:
         if card_type == type(card):
             return True

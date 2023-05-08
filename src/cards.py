@@ -7,6 +7,10 @@
 from dataclasses import dataclass, field
 
 
+def play_card(card_name: str) -> None:
+    globals()[card_name]()
+
+
 # TODO in GAME.py have a lookup of "str" to thing
 
 @dataclass

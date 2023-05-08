@@ -1,8 +1,10 @@
 
-from .cards import Card
+from .cards import Card, play_card
 from .actions import flip_heads
 
 
+def play_trainer(card_name: str) -> None:
+    play_card(card_name)
 
 # TODO need a trainer class i think
 

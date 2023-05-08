@@ -16,10 +16,11 @@ class Player:
         self._name = name
         self._deck: [Union[Trainer, Pokemon, Energy]] = []
         self._hand: [Union[Trainer, Pokemon, Energy]] = []
-        self._discard: [Union[Trainer, Pokemon, Energy]] = []
-        # TODO make Game control the prize pools? so a player cant see them?
         self._prize_pool: [Union[Trainer, Pokemon, Energy]] = []
         self._active = None
+        self._discard = []
+        self._prizes_drawn = False
+        self._hands_drawn = 0
 
     @property
     def name(self):
@@ -33,12 +34,16 @@ class Player:
     def hand(self):
         return self._hand
 
+    @property
+    def discard(self):
+        return self._discard
+
     # TODO make this only settable once!
     # TODO add a lock?
     @deck.setter
     def deck(self, chosen_deck: list):
         if len(chosen_deck) != 60:
-            raise Exception(f"Deck size ({chosen_deck}) is incorrect")
+            raise Exception(f"Deck size ({len(chosen_deck)}) is incorrect")
         if not check_card_type_in_pile(card_type=Pokemon, pile=chosen_deck):
             raise Exception(f"Deck must have at least one {type(Pokemon)}!")
         # TODO check pokemon is basic as well otherwise ERROR!
@@ -58,12 +63,17 @@ class Player:
 
     def draw_hand(self):
         self.draw_cards(7)
+        self._hands_drawn += 1
 
     def remake_deck(self):
         """
         Put all cards back into deck
         """
         self._deck = self._deck + self._hand + self._prize_pool + self._discard
+        self._hand = []
+        self._prize_pool = []
+        self._discard = []
+        assert len(self._deck) == 60, f"Deck size is incorrect: {len(self._deck)}"
         self.shuffle_deck()
 
     def redraw_hand(self):
@@ -102,17 +112,18 @@ class Player:
         raise NotImplementedError
 
     def draw_prizes(self):
+        if self._prizes_drawn:
+            raise Exception("Cant draw prizes after Game has started")
+        move_cards_between_piles(from_pile=self.deck, to_pile=self._prize_pool, number=6)
+        self._prizes_drawn = True
 
-
-    def take_prize(self):
-        prize = self.select_cards(self._prize_pool, number=1)
+    def take_prize(self, number: int = 1):
+        # TODO give choice of 1, 2, 3, 4, 5, 6
+        prize = self.select_cards(self._prize_pool, number=number)
         self._hand.append(prize)
 
     def has_empty_deck(self) -> bool:
-        if len(self._deck) < 1:
-            print(f"{self.name}' has no cards in deck!")
-            return True
-        return False
+        return len(self._deck) < 1
 
     # DOESNT WORK :/
     # TODO fix

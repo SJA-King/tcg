@@ -9,7 +9,7 @@ from typing import final
 
 logging.basicConfig(level=logging.INFO)
 
-MAX_TURNS: final(int) = 999
+MAX_TURNS: final(int) = 100
 
 player_one = Player("Bethany")
 player_two = Player("Simon")
@@ -30,21 +30,31 @@ player_one.deck = some_trainers + some_pokemon + some_energy
 player_one.draw_hand()
 player_two.draw_hand()
 
-print(player_one.show_hand())
-print(player_two.show_hand())
+while not player_one.has_pokemon_in_hand() or not player_two.has_pokemon_in_hand():
 
-print(player_two.has_pokemon_in_hand())
-print(player_one.has_pokemon_in_hand())
+    if not player_one.has_pokemon_in_hand():
+        print("P1 REDRAWS")
+        player_one.redraw_hand()
 
-# TODO draw starting hands
-## TODO no Pokemon, shuffle then redraw, opponent +1 draw (choice!)
+    if not player_two.has_pokemon_in_hand():
+        print("P2 REDRAWS")
+        player_two.redraw_hand()
 
-# TODO draw prizes when hands are acceptable
+    print(player_one.show_hand())
+    print(player_two.show_hand())
+
+    # TODO no Pokemon, shuffle then redraw, opponent +1 draw (choice!)
+
+player_one.draw_prizes()
 player_two.draw_prizes()
 
+# TODO need a Pokemon that is also BASIC!
+# Need to import the cards now proper
 # TODO set active pokemon
 
-# TODO
+# TODO Add various tests what I already have!
+
+# TODO give selection opportunity!
 
 while this_game.turns < MAX_TURNS:
 
