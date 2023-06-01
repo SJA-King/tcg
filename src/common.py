@@ -2,6 +2,7 @@ import random
 import pathlib
 from typing import Union
 from yaml import safe_load
+from enum import Enum, auto
 
 SRC_PATH = pathlib.Path(__file__).parent
 TCG_PATH = SRC_PATH.parent
@@ -12,6 +13,14 @@ SETS_PATH = TCG_PATH / "sets"
 DECKS_PATH = TCG_PATH / "decks"
 
 
+class Types(Enum):
+    ELECTRIC = auto()
+    WATER = auto()
+    FIRE = auto()
+    FIGHTING = auto()
+    PSYCHIC = auto()
+    GRASS = auto()
+    NORMAL = auto()
 
 
 def check_file_path(file_path: pathlib.Path) -> None:

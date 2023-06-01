@@ -5,6 +5,9 @@
 # from .gen1.attacks import ATTACKS
 # from .gen1.pokepowers import POKEPOWERS
 from dataclasses import dataclass, field
+from attacks import Attacks
+from common import Types
+from pokepowers import PokePower
 
 
 def play_card(card_name: str) -> None:
@@ -15,42 +18,85 @@ def play_card(card_name: str) -> None:
 
 @dataclass
 class Card:
-    name: str = ""
-    description: str = ""
-    hit_points: int = 0
+    _name: str = ""
+    _description: str = ""
+    _hit_points: int = 0
+
+    @property
+    def name(self):
+        return self.name
+
+    @property
+    def description(self):
+        return self._description
+
+    @property
+    def hit_points(self):
+        return self._hit_points
 
 
 @dataclass
 class Pokemon(Card):
-    type: str = ""
-    # TODO theres only max 3 attacks so maybe easier to have individual
-    attacks: list[str] = field(default_factory=list)
-    resistance: str = ""
-    weakness: str = ""
-    retreat_cost: str = ""
-    pokepower: str = ""
-    evolution_stage: str = ""
+    _type: Types = None
+    _attacks: str = None
+    _resistance: Types = None
+    _weakness: Types = None
+    _retreat_cost: int = None
+    _pokepower: PokePower = None
+    _evolution_stage: str = ""  # TODO think about this one
 
+    @property
+    def type(self):
+        return self._type
 
-    # def __init__(self, pokemon_name: str = "Pokemon", pokemon_attributes: dict = None):
-    #     super().__init__(pokemon_name, "")
-    #     self.type = None
-    #     self.hp = None
-    #     self.set_attributes(pokemon_attributes)
+    @property
+    def attacks(self):
+        return self._attacks
+
+    def attack_x(self, number: int):
+        if len(self._attacks) > number:
+            return self._attacks[number]
+        return False
+
+    def attack_one(self):
+        return self.attack_x(0)
+
+    def attack_two(self):
+        return self.attack_x(1)
+
+    def attack_three(self):
+        return self.attack_x(2)
+    # @property
+    # def attack_two_name(self):
+    #     return self._attack_two_name
     #
-    # def set_attributes(self, attributes: dict = None):
-    #     if not attributes:
-    #         raise Exception(f"{self.name} has empty attributes!")
-    #     self.hp = attributes["hp"]
-    #     self.type = attributes["type"]
-    #     self.attack_1 = ATTACKS[attributes["attack_1"]]
-    #     self.attack_2 = ATTACKS[attributes["attack_2"]]
-    #     self.resistance = attributes["resistance"]
-    #     self.weakness = attributes["weakness"]
-    #     self.retreat_cost = attributes["retreat_cost"]
-    #     self.pokepower = POKEPOWERS[attributes["pokepower"]]
-    #     self.stage = attributes["stage"]
+    # @property
+    # def attack_three_name(self):
+    #     return self._attack_three_name
 
+    @property
+    def resistance(self):
+        return self._resistance
+
+    @property
+    def weakness(self):
+        return self._weakness
+
+    @property
+    def retreat_cost(self):
+        return self._retreat_cost
+
+    @property
+    def pokepower(self):
+        return self._pokepower
+
+    @property
+    def evolution_stage(self):
+        return self._evolution_stage
+
+
+
+# TODO below to change things to enums maybe
 @dataclass
 class Trainer(Card):
     #if so we could just have 'move' rather than 'draw' and / or 'discard'

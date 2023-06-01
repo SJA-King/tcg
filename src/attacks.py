@@ -116,3 +116,51 @@ def set_status_():
 # def jab(receiver: Player):
 #     Attack("jab").active_damage(reciever=receiver, damage=20)
 #
+def jab():
+    raise NotImplementedError
+
+def double_edge():
+    raise NotImplementedError
+
+def leek_smash():
+    raise NotImplementedError
+
+def pot_smash():
+    raise NotImplementedError
+
+def scrunch():
+    raise NotImplementedError
+
+def special_punch():
+    raise NotImplementedError
+
+def thunderpunch():
+    raise NotImplementedError
+
+def thundershock():
+    raise NotImplementedError
+
+
+from enum import Enum
+
+
+class Attacks(Enum):
+    double_edge = (double_edge,)
+    jab = (jab,)
+    leek_smash = (leek_smash,)
+    pot_smash = (pot_smash,)
+    scrunch = (scrunch,)
+    special_punch = (special_punch,)
+    thunderpunch = (thunderpunch,)
+    thundershock = (thundershock,)
+
+    def __call__(self, *args, **kwargs):
+        return self.value[0](*args, **kwargs)
+
+# Works like below
+# print(Attacks["jab"])
+# >>Attacks.jab
+# print(Attacks["jab"](1))
+# >>World
+# print(Attacks["jab"](0))
+# >>Hello

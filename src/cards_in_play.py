@@ -1,4 +1,5 @@
 from cards import Pokemon, Trainer, Energy
+from attacks import Attacks
 
 # Only an InPlay Card needs player_1 and player_2
 
@@ -6,11 +7,23 @@ from cards import Pokemon, Trainer, Energy
 
 
 class PokemonInPlay(Pokemon):
+    attack_one: Attacks = None
+    attack_two: Attacks = None
+    attack_three: Attacks = None
+    # TODO maybe make this a map?
+    # e.g. attacks = map(i in super().attacks, Attacks[i])
+    if super().attack_one_name:
+        attack_one: Attacks = Attacks[super().attack_one_name]
+    if super().attack_two_name:
+        attack_two: Attacks = Attacks[super().attack_two_name]
+    if super().attack_three_name:
+        attack_three: Attacks = Attacks[super().attack_three_name]
     can_attack = True
     attached_energies = []
     attached_trainers = []
     retreat_cost = 0
     pass
+
 
 
 # TODO evolving a PokemonInPlay

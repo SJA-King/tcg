@@ -112,9 +112,6 @@ def take_prize(from_prizes: Prizes, to_hand: Hand, number: int = 1):
     move_cards(from_pile=from_prizes, to_pile=to_hand, number=number)
 
 
-
-
-
 def put_card_on_top_of_pile(from_pile: list[Card], to_pile: list[Card], number: int = 1):
     for _ in range(number):
         to_pile = [from_pile[0]] + to_pile
