@@ -20,7 +20,7 @@ class Types(Enum):
     FIGHTING = auto()
     PSYCHIC = auto()
     GRASS = auto()
-    NORMAL = auto()
+    COLORLESS = auto()  # 'Normal'
 
 
 def check_file_path(file_path: pathlib.Path) -> None:

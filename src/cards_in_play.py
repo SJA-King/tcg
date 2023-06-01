@@ -1,5 +1,7 @@
 from cards import Pokemon, Trainer, Energy
 from attacks import Attacks
+from pokepowers import PokePower
+from attacks import Attacks
 
 # Only an InPlay Card needs player_1 and player_2
 
@@ -7,23 +9,62 @@ from attacks import Attacks
 
 
 class PokemonInPlay(Pokemon):
-    attack_one: Attacks = None
-    attack_two: Attacks = None
-    attack_three: Attacks = None
-    # TODO maybe make this a map?
-    # e.g. attacks = map(i in super().attacks, Attacks[i])
-    if super().attack_one_name:
-        attack_one: Attacks = Attacks[super().attack_one_name]
-    if super().attack_two_name:
-        attack_two: Attacks = Attacks[super().attack_two_name]
-    if super().attack_three_name:
-        attack_three: Attacks = Attacks[super().attack_three_name]
-    can_attack = True
-    attached_energies = []
-    attached_trainers = []
-    retreat_cost = 0
-    pass
+    _attached_energies: list[Energy] = []
+    _attached_trainers: list[Trainer] = []
+    _attached_pokemon: list[Pokemon] = []
+    _damage_count: int = 0
 
+    def attack_x(self, number: int):
+        if not self._attacks:
+            raise Exception("No Attacks listed!")
+        if len(self._attacks) > number:
+            return Attacks[self._attacks[number]]
+        return False
+
+    def attack_one(self):
+        return self.attack_x(0)
+
+    def attack_two(self):
+        return self.attack_x(1)
+
+    def attack_three(self):
+        return self.attack_x(2)
+
+    # TODO think about how a Pokemon(Card) becomes a PokemonInPlay AND vice versa
+
+    def take_damage(self, damage_amount: int):
+        self._damage_count += damage_amount
+        if self._damage_count > self._hit_points:
+            # TODO discard to discard
+            raise NotImplementedError
+
+    def show_attached_energies(self):
+        return self._attached_energies
+
+    def show_attached_trainers(self):
+        return self._attached_trainers
+
+    def replace_attacks(self):
+        pass
+
+    def replace_pokepower(self, pokepowers: list[PokePower]):
+        # TODO make a setter for these properties
+        pass
+
+    def replace_name(self, name: str):
+        pass
+
+    def evolve(self, evolving_card: Pokemon):
+        if evolving_card.name != self.evolution_stage:
+            raise Exception(f"{evolving_card.name} cant evolve into {self.evolution_stage}")
+        self.replace_name(evolving_card.name)
+        self.replace_pokepower(evolving_card.pokepower)
+        # TODO ah make in_play_versions of basic card things, that way we can devolve
+
+
+
+# x = PokemonInPlay(_attacks=["jab", "special_punch"])
+# x.attack_one()
 
 
 # TODO evolving a PokemonInPlay

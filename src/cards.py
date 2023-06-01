@@ -38,7 +38,7 @@ class Card:
 @dataclass
 class Pokemon(Card):
     _type: Types = None
-    _attacks: str = None
+    _attacks: list[str] = None
     _resistance: Types = None
     _weakness: Types = None
     _retreat_cost: int = None
@@ -53,19 +53,6 @@ class Pokemon(Card):
     def attacks(self):
         return self._attacks
 
-    def attack_x(self, number: int):
-        if len(self._attacks) > number:
-            return self._attacks[number]
-        return False
-
-    def attack_one(self):
-        return self.attack_x(0)
-
-    def attack_two(self):
-        return self.attack_x(1)
-
-    def attack_three(self):
-        return self.attack_x(2)
     # @property
     # def attack_two_name(self):
     #     return self._attack_two_name
