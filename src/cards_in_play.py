@@ -14,6 +14,8 @@ class PokemonInPlay(Pokemon):
     _attached_pokemon: list[Pokemon] = []
     _damage_count: int = 0
 
+    # TODO constructor needs (owner: Player, opponent: Player)
+
     def attack_x(self, number: int):
         if not self._attacks:
             raise Exception("No Attacks listed!")
@@ -104,9 +106,6 @@ class ActivePokemon(PokemonInPlay):
             print("need more energy!")
 
     def become_active(self):
-        raise NotImplementedError
-
-    def evolve(self):
         raise NotImplementedError
 
     def devolve(self):
