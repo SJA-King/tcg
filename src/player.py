@@ -7,6 +7,7 @@ from .piles import Deck, Pile, Hand, Prizes, Discard
 from .cards import Card, Trainer, Pokemon, Energy
 # TODO make game do the action upon Player not the player doing them
 from .actions import move_cards_between_piles, draw_cards, check_card_type_in_pile, draw_prizes, take_prize, draw_starting_hand
+from .cards_in_play import PokemonInPlay, ActivePokemon, BenchedPokemon
 
 from random import shuffle
 from typing import Union, Type
@@ -22,10 +23,9 @@ class Player:
         # self._discard = []
         self._deck: Deck = chosen_deck
         self._hand: Hand = Hand([])
-        self._prizes: Prizes = Prizes([])
+        self._prize_pool: Prizes = Prizes([])
         self._discard: Discard = Discard([])
-        self._active = None
-        self._prizes_drawn = False
+        self._active: ActivePokemon = ActivePokemon()
         self._hands_drawn = 0
 
     @property
@@ -78,7 +78,7 @@ class Player:
         """
         Put all cards back into deck
         """
-        self._deck = self._deck + self._hand + self._prize_pool + self._discard
+        self._deck += ((self._hand + self._prize_pool) + self._discard)
         self._hand = []
         self._prize_pool = []
         self._discard = []

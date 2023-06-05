@@ -1,7 +1,8 @@
-from cards import Pokemon, Trainer, Energy
-from attacks import Attacks
-from pokepowers import PokePower
-from attacks import Attacks
+from .cards import Pokemon, Trainer, Energy
+from .piles import Pile
+from .attacks import Attacks
+from .pokepowers import PokePower
+from .attacks import Attacks
 
 # Only an InPlay Card needs player_1 and player_2
 
@@ -9,6 +10,7 @@ from attacks import Attacks
 
 
 class PokemonInPlay(Pokemon):
+    _attached_cards: Pile = Pile(card_list=[])
     _attached_energies: list[Energy] = []
     _attached_trainers: list[Trainer] = []
     _attached_pokemon: list[Pokemon] = []
@@ -56,11 +58,12 @@ class PokemonInPlay(Pokemon):
     def replace_name(self, name: str):
         pass
 
-    def evolve(self, evolving_card: Pokemon):
-        if evolving_card.name != self.evolution_stage:
-            raise Exception(f"{evolving_card.name} cant evolve into {self.evolution_stage}")
-        self.replace_name(evolving_card.name)
-        self.replace_pokepower(evolving_card.pokepower)
+    # TODO only allow basic pokemon for now!
+    # def evolve(self, evolving_card: Pokemon):
+    #     if evolving_card.name != self.evolution_stage:
+    #         raise Exception(f"{evolving_card.name} cant evolve into {self.evolution_stage}")
+    #     self.replace_name(evolving_card.name)
+    #     self.replace_pokepower(evolving_card.pokepower)
         # TODO ah make in_play_versions of basic card things, that way we can devolve
 
 
@@ -80,7 +83,7 @@ class PokemonInPlay(Pokemon):
 
 class ActivePokemon(PokemonInPlay):
 
-    status = None
+    _status = None
 
     pass
 
@@ -96,10 +99,13 @@ class ActivePokemon(PokemonInPlay):
     def set_paralsis(self):
         raise NotImplementedError
 
+    def remove_status(self):
+        self._status = None
+
     def become_benched(self):
         # TODO check statuses?
         # TODO Switch bypasses
-        if len(self.attached_energies) >= self.retreat_cost:
+        if len(self._attached_energies) >= self.retreat_cost:
             # TODO
             raise NotImplementedError
         else:
@@ -112,19 +118,8 @@ class ActivePokemon(PokemonInPlay):
         raise NotImplementedError
 
 
-
 class BenchedPokemon(PokemonInPlay):
     can_attack = False
 
-
     def become_active(self):
-
-        pass
-
-
-# class TrainerInPlay(Trainer):
-#     pass
-#
-#
-# class EnergyInPlay(Energy):
-#     pass
+        raise NotImplementedError

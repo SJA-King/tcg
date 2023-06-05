@@ -5,57 +5,47 @@ import random
 
 class Pile:
 
-    def __init__(self, card_list: list[Card]):
+    def __init__(self, card_list: list[Card], viewable: bool = False):
         # self._name = name
-        self._cards = card_list
-
-    @property
-    def cards(self):
-        return self._cards
+        self.cards = card_list
+        self.viewable = viewable
 
     def cards_left(self):
-        return len(self._cards)
+        return len(self.cards)
+
+    # TODO 05/06/23 keep fixing
+    def __add__(self, other):
+        if other.cards:
+            self.cards += other
 
 
 class Deck(Pile):
-    """ Initalised with 60 cards """
-    # def __init__(self, card_list):
-    #     super().__init__("Deck", card_list)
+    """ Source of all Cards used through the game. Set to 60 at the beginning of the match """
+    def __init__(self, card_list):
+        super().__init__(card_list, viewable=False)
 
     def shuffle(self):
-        random.shuffle(self._cards)
+        random.shuffle(self.cards)
 
 
 class Hand(Pile):
-    """ Hand is created on Turn 0 and given 7 cards """
-    pass
-    # def __init__(self, card_list):
-    #     super().__init__("Hand", card_list)
-        # TODO check theres a basic pokemon
-        # TODO offer a mulligan
+    """ A Players Hand is where they play most of their cards from """
 
-    # @property
-    # def cards(self):
-    #     return self._cards
+    def __init__(self, card_list):
+        super().__init__(card_list, viewable=True)
 
 
 class Discard(Pile):
-    pass
+    """ When a Card is 'used up' it is put into the Discard Pile """
 
-    # def __init__(self, card_list):
-    #     super().__init__("Discard", card_list)
-
-    # @property
-    # def cards(self):
-    #     return self._cards
+    def __init__(self, card_list):
+        super().__init__(card_list, viewable=True)
 
 
 class Prizes(Pile):
-    pass
-
-    # def __init__(self, card_list):
-    #     super().__init__("Prizes", card_list)
-    #     self._drawn: bool = False  # TODO may not need this
-
-    # def lock(self):  # TODO may not need this
-    #     self._drawn = True  # TODO may not need this
+    """ At the beginning of the Game a Player has six Prize cards they can take for Knocking Out a Pokemon"""
+    def __init__(self, card_list):
+        # if len(card_list) != 6:
+        #     raise Exception(f"Prize Pool must have 6 Cards!")
+        # TODO add check at some point!
+        super().__init__(card_list, viewable=False)

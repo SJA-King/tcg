@@ -5,9 +5,9 @@
 # from .gen1.attacks import ATTACKS
 # from .gen1.pokepowers import POKEPOWERS
 from dataclasses import dataclass, field
-from attacks import Attacks
-from common import Types
-from pokepowers import PokePower
+from .attacks import Attacks
+from .common import Types, EvoStages
+from .pokepowers import PokePower
 
 
 def play_card(card_name: str) -> None:
@@ -43,7 +43,7 @@ class Pokemon(Card):
     _weakness: Types = None
     _retreat_cost: int = None
     _pokepower: PokePower = None
-    _evolution_stage: str = ""  # TODO think about this one
+    _evolution_stage: EvoStages = EvoStages.BASIC
 
     @property
     def type(self):
@@ -103,9 +103,6 @@ class Trainer(Card):
     card_type: str = ""  # e.g. 'energy', 'trainer'
     # TODO need a select? rather than automatic?
 
-
-# class Supporter(Trainer):
-# TODO
 
 class Energy(Card):
 

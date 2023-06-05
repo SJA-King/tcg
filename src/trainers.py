@@ -1,6 +1,6 @@
 
 from cards import Card, play_card
-from actions import flip_heads
+from actions import flip_heads, shuffle_pile
 
 
 def play_trainer(card_name: str) -> None:

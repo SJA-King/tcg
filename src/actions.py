@@ -65,7 +65,8 @@ def move_cards(from_pile: Pile, to_pile: Pile, number: int = 1) -> None:
     # TODO Add if number >= 60 that you just add them together dont loop!
 
     for _ in range(number):
-        to_pile.cards.append(from_pile.cards[0])
+        card_to_move = from_pile.cards[0]
+        to_pile.cards.append(card_to_move)
         from_pile.cards.pop(0)
 
 

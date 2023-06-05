@@ -1,21 +1,21 @@
 # Make generic attacks in here, then in the gens they make them specific
 # e.g.
-from tcg.src.player import Player
-from .cards import Card, play_card
+# from .player import Player
+# from .cards import Card, play_card
 
 
-def play_attack(card_name: str) -> None:
-    play_card(card_name)
+# def play_attack(card_name: str) -> None:
+#     play_card(card_name)
 
 
 class Attack:
     def __init__(self, name: str):
         __name__ = name
 
-    def active_damage(self, receiver: Player, damage: int): # TODO add damage type!
-        if damage % 10 != 0:
-            raise Exception(f"Damage: {damage} ISNT multiple of ten")
-        receiver.active.take_damage(damage=damage)  # TODO make this method
+    # def active_damage(self, receiver: Player, damage: int): # TODO add damage type!
+    #     if damage % 10 != 0:
+    #         raise Exception(f"Damage: {damage} ISNT multiple of ten")
+    #     receiver.active.take_damage(damage=damage)  # TODO make this method
 
 def benched_damage():
     pass
@@ -119,23 +119,30 @@ def set_status_():
 def jab():
     raise NotImplementedError
 
+
 def double_edge():
     raise NotImplementedError
+
 
 def leek_smash():
     raise NotImplementedError
 
+
 def pot_smash():
     raise NotImplementedError
+
 
 def scrunch():
     raise NotImplementedError
 
+
 def special_punch():
     raise NotImplementedError
 
+
 def thunderpunch():
     raise NotImplementedError
+
 
 def thundershock():
     raise NotImplementedError

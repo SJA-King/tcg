@@ -4,9 +4,8 @@ from enum import Enum, auto
 
 
 def damage_swap():
-    raise NotImplementedError
+    return "NotImplemented!"
 
 
 class PokePower(Enum):
     DAMAGE_SWAP = damage_swap()
-

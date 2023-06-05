@@ -18,18 +18,25 @@ TODO
 1. Need to import cards
    1. import energy 
    2. import trainer
-3. make a deck of 60 cards
-4. make a player with a deck, discard
-5. make a player with above AND a hand
-6. make a player with above AND a prize pool
-7. make a player with above AND an active pokemon
-8. make a player with above AND benched pokemon
+2. make a deck of 60 cards
+3. make a player with a deck, discard
+4. make a player with above AND a hand
+5. make a player with above AND a prize pool
+6. make a player with above AND an active pokemon
+7. make a player with above AND benched pokemon
    1. 1 benched pokemon
    2. 2 benched pokemon
    3. 3 benched pokemon
    4. 4 benched pokemon
    5. 5 benched pokemon
-9. Make all effects
+8. Make all effects
    3. Add to this list
-10. make all attacks in haymaker deck
-11. ~~make all pokepowers~~ (Not needed yet)
+9. make all attacks in haymaker deck
+10. ~~make all pokepowers~~ (Not needed yet)
+
+
+Future
+1. Trainers can be supporters
+2. Trainers can be stadiums
+   1. Pile - max len = 1
+3. 

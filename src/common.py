@@ -23,6 +23,12 @@ class Types(Enum):
     COLORLESS = auto()  # 'Normal'
 
 
+class EvoStages(Enum):
+    BASIC = auto()
+    STAGE_ONE = auto()
+    STAGE_TWO = auto()
+
+
 def check_file_path(file_path: pathlib.Path) -> None:
     """ Check a file exists """
     assert file_path.is_file(), f"{file_path} not found!"
