@@ -32,6 +32,7 @@ class Player:
         self._active: ActivePokemon = ActivePokemon()
         self._hands_drawn = 0
         self.prizes_drawn = False
+        self._ready = False
 
     @property
     def name(self):
@@ -40,6 +41,14 @@ class Player:
     @property
     def hands_drawn(self):
         return self._hands_drawn
+
+    @property
+    def ready(self):
+        return self._ready
+
+    def is_ready(self) -> None:
+        print(f"Player: {self.name} (Ready) : Drawn '{self.hands_drawn}' hands")
+        self._ready = True
     #
     # @property
     # def hand(self):
@@ -90,12 +99,14 @@ class Player:
         self.put_prizes_back_into_deck()
         self.shuffle_deck()
 
+    # TODO maybe need to change these names
     def draw_hand(self):
         draw_starting_hand(self.deck, self.hand)
         self._hands_drawn += 1
 
     def redraw_hand(self):
         self.remake_deck()
+        print(f"{self.name} draw Hand")
         self.draw_hand()
 
     def show_hand(self):
@@ -130,6 +141,7 @@ class Player:
         raise NotImplementedError
 
     def draw_prizes(self):
+        print(f"{self.name} draw prizes")
         if self.prizes_drawn:
             raise Exception("Cant draw prizes after Game has started")
 

@@ -29,28 +29,22 @@ if not flip_heads():
 
 this_game = Game(one=player_one, two=player_two, generation=1)
 
-# TODO change these actions to the player?
-for player in [player_one, player_two]:
-    draw_starting_hand(from_deck=player.deck, to_hand=player.hand)
+while not player_one.ready or \
+        not player_two.ready:
 
-# player_one.draw_hand()
-# player_two.draw_hand()
-# TODO will break from here!!!!!!!
-while not player_one.has_pokemon_in_hand() or not player_two.has_pokemon_in_hand():
+    for player in [player_one, player_two]:
+        if player.ready:
+            continue
 
-    if not player_one.has_pokemon_in_hand():
-        print("P1 REDRAWS")
-        player_one.redraw_hand()
+        if player.has_pokemon_in_hand():
+            player.is_ready()
 
-    if not player_two.has_pokemon_in_hand():
-        print("P2 REDRAWS")
-        player_two.redraw_hand()
+        else:
+            player.redraw_hand()
 
-    print(f"Player: {player_one.name}, Hand = {player_one.show_hand()}")
-    print(f"Player: {player_two.name}, Hand = {player_two.show_hand()}")
+        print(f"Player: {player.name}, Hand = {player.show_hand()}")
 
-print(f"Player: {player_one.name} has drawn '{player_one.hands_drawn}' hands")
-print(f"Player: {player_two.name} has drawn '{player_two.hands_drawn}' hands")
+
 
     # TODO no Pokemon, shuffle then redraw, opponent +1 draw (choice!)
 
