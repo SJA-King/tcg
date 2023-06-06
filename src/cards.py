@@ -6,8 +6,10 @@
 # from .gen1.pokepowers import POKEPOWERS
 from dataclasses import dataclass, field
 from .attacks import Attacks
-from .common import Types, EvoStages
+from .common import EnergyTypes, EvoStages
 from .pokepowers import PokePower
+
+from enum import Enum, auto
 
 
 def play_card(card_name: str) -> None:
@@ -16,11 +18,19 @@ def play_card(card_name: str) -> None:
 
 # TODO in GAME.py have a lookup of "str" to thing
 
+class CardType(Enum):
+    POKEMON = auto()
+    TRAINER = auto()
+    ENERGY = auto()
+
+
 @dataclass
 class Card:
     _name: str = ""
     _description: str = ""
     _hit_points: int = 0
+    _energy_type: EnergyTypes = None
+    _card_type: CardType = None
 
     @property
     def name(self):
@@ -34,20 +44,24 @@ class Card:
     def hit_points(self):
         return self._hit_points
 
+    @property
+    def card_type(self):
+        return self._card_type
+
+    @property
+    def energy_type(self):
+        return self._energy_type
+
 
 @dataclass
 class Pokemon(Card):
-    _type: Types = None
     _attacks: list[str] = None
-    _resistance: Types = None
-    _weakness: Types = None
+    _resistance: EnergyTypes = None
+    _weakness: EnergyTypes = None
     _retreat_cost: int = None
     _pokepower: PokePower = None
     _evolution_stage: EvoStages = EvoStages.BASIC
-
-    @property
-    def type(self):
-        return self._type
+    _card_type = CardType.POKEMON
 
     @property
     def attacks(self):
@@ -100,30 +114,38 @@ class Trainer(Card):
     # position on its own is singular space? or should it always be a->b?
     position: str = ""  # E.g. hand, active, bench, deck, discard_pile
     attach: bool = False
-    card_type: str = ""  # e.g. 'energy', 'trainer'
+    _card_type = CardType.TRAINER
     # TODO need a select? rather than automatic?
 
 
+@dataclass
 class Energy(Card):
+    _card_type = CardType.ENERGY
+    # TODO broken from here!!!
+    _name = _energy_type.value
+    _basic = True
+    _amount = 1
+    if not _basic:
+        # Assume its the double colorless energy
+        _amount = 2
 
-    def __init__(self, name: str = "Energy", amount: int = 1, basic: bool = True):
-        super().__init__(name, "")
-        self.amount = amount
-        self.basic = basic
+    # def __init__(self, basic: bool = True):
+    #     super().__init__()
+    #     self._name = self._energy_type.value
+    #     self._basic = basic
+    #     if not self._basic:
+    #         # Assume its the double colorless energy
+    #         self.amount = 2
 
 
-ENERGIES = {
-    "Psychic": Energy("Psychic"),
-    "Lightning": Energy("Lightning"),
-    "Fire": Energy("Fire"),
-    "Water": Energy("Water"),
-    "Grass": Energy("Grass"),
-    "Fighting": Energy("Fighting"),
-    "Double Colorless": Energy("Double Colorless", amount=2, basic=False),
-}
+class BasicEnergyCards(Enum):
+    LIGHTNING = Energy(_energy_type=EnergyTypes.LIGHTNING)
+    PSYCHIC = Energy(energy_type=EnergyTypes.PSYCHIC)
+    FIRE = Energy(energy_type=EnergyTypes.FIRE)
+    WATER = Energy(energy_type=EnergyTypes.WATER)
+    GRASS = Energy(energy_type=EnergyTypes.GRASS)
+    FIGHTING = Energy(energy_type=EnergyTypes.FIGHTING)
 
 
-# class Stadium(Trainer):
-#     pass
-# TODO
-
+class SpecialEnergyCards(Enum):
+    DOUBLECOLORLESS = Energy(energy_type=EnergyTypes.COLORLESS, basic=False)

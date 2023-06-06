@@ -1,10 +1,9 @@
 from src.game import Game
 from src.player import Player
-from src.cards import Card, Energy, ENERGIES, Trainer, Pokemon
+from src.cards import Card, Energy, BasicEnergyCards, Trainer, Pokemon
 from src.actions import flip_heads, flip_multiple_heads, draw_starting_hand, put_all_cards_back_into_deck
 from src.piles import Deck
-from src.common import EvoStages
-
+from src.common import EvoStages, EnergyTypes
 
 import logging
 from typing import final
@@ -13,16 +12,20 @@ logging.basicConfig(level=logging.INFO)
 
 MAX_TURNS: final(int) = 100
 
+
+
 some_trainers = [Trainer(i) for i in "qwertyuiopqwertyuiopqwertyuiopqwert"]
 # some_pokemon = [Pokemon(name=i) for i in "asdfghjklasdfghjklas"]
 # TODO temp small amount of Pokemon to make things easy to test
 # TODO Make check that deck has at least one basic pokemon!
 # TODO make a test for that too!
 some_pokemon = [Pokemon(i) for i in "123"] + [Pokemon(i, _evolution_stage=EvoStages.STAGE_ONE) for i in "45"]
-some_energy = [Energy(name="Electric") for _ in range(20)]
-
-a_deck = some_trainers + some_pokemon + some_energy
-b_deck = some_trainers + some_pokemon + some_energy
+# TODO check keys in yml are expected
+# TODO check values are one of expected values, e.g. types, attacks, pokepowers,
+lightning_energy = [BasicEnergyCards[EnergyTypes.LIGHTNING.value].value for _ in range(20)]
+fighting_energy = [BasicEnergyCards[EnergyTypes.FIGHTING.value].value for _ in range(20)]
+a_deck = some_trainers + some_pokemon + lightning_energy
+b_deck = some_trainers + some_pokemon + fighting_energy
 
 player_one = Player("Bethany", chosen_deck=Deck(card_list=a_deck))
 player_two = Player("Simon", chosen_deck=Deck(card_list=b_deck))
@@ -45,9 +48,7 @@ while not player_one.ready or \
         else:
             player.redraw_hand()
 
-        print(f"Player: {player.name}, Hand = {player.show_hand()}")
-
-# TODO no Pokemon, shuffle then redraw, opponent +1 draw (choice!)
+    # Add option to draw more cards up to times opponent mulliganed
 
 # Need to import the cards now proper
 # TODO set active pokemon

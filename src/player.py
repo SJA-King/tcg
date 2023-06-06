@@ -9,7 +9,7 @@ from .cards import Card, Trainer, Pokemon, Energy
 # TODO make game do the action upon Player not the player doing them
 from .actions import (move_cards_between_piles, draw_cards, check_card_type_in_pile, draw_prizes, take_prize,
                       draw_starting_hand, move_cards, put_prizes_back_into_deck,
-                      put_hand_back_into_deck, put_discard_back_into_deck)
+                      put_hand_back_into_deck, put_discard_back_into_deck, check_pokemon_is_basic)
 from .cards_in_play import PokemonInPlay, ActivePokemon, BenchedPokemon
 from .common import EvoStages
 
@@ -98,16 +98,18 @@ class Player:
         self.put_hand_back_into_deck()
         self.put_discard_back_into_deck()
         self.put_prizes_back_into_deck()
+        # TODO put active back into deck
+        # TODO put benched back into deck
         self.shuffle_deck()
 
     # TODO maybe need to change these names
     def draw_hand(self):
         draw_starting_hand(self.deck, self.hand)
+        print(f"{self.name} - Hand = {self.show_hand()}")
         self._hands_drawn += 1
 
     def redraw_hand(self):
         self.remake_deck()
-        print(f"{self.name} draw Hand")
         self.draw_hand()
 
     def show_hand(self):
@@ -119,9 +121,7 @@ class Player:
     def has_pokemon_in_hand(self) -> bool:
         pokemon_in_hand = check_card_type_in_pile(card_type=Pokemon, pile=self.hand)
         if pokemon_in_hand:
-            for pokemon in pokemon_in_hand:
-                if pokemon.evolution_stage == EvoStages.BASIC:
-                    return True
+            return check_pokemon_is_basic(pokemon_in_hand)
 
         return False
 

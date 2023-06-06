@@ -3,6 +3,7 @@
 # An action handles contents of other classes, i.e. not a Player, but a players deck, hand, etc
 from .cards import Card, Pokemon, Trainer, Energy
 from .piles import Deck, Hand, Discard, Pile, Prizes
+from .common import EvoStages
 
 import random
 from typing import Union, Type
@@ -185,8 +186,14 @@ def check_card_type_in_pile(card_type: Type[Card], pile: Pile) -> typing.Union[l
     return cards_with_type
 
 
-def check_pokemon_is_basic(pile: Pile):
-    raise NotImplementedError
+def check_pokemon_is_basic(cards: list[Card]):
+    # TODO fix unresolved attribute issue below - this 'typing.Union[Pile, Pokemon]' didnt work
+    for card in cards:
+        if type(card) is Pokemon:
+            if card.evolution_stage == EvoStages.BASIC:
+                return True
+
+    return False
 
 
 def select_cards(pile_to_select: list, number: int = 1) -> list:

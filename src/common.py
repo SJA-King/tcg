@@ -13,14 +13,17 @@ SETS_PATH = TCG_PATH / "sets"
 DECKS_PATH = TCG_PATH / "decks"
 
 
-class Types(Enum):
-    ELECTRIC = auto()
-    WATER = auto()
-    FIRE = auto()
-    FIGHTING = auto()
-    PSYCHIC = auto()
-    GRASS = auto()
-    COLORLESS = auto()  # 'Normal'
+class EnergyTypes(Enum):
+    LIGHTNING = "LIGHTNING"
+    WATER = "WATER"
+    FIRE = "FIRE"
+    FIGHTING = "FIGHTING"
+    PSYCHIC = "PSYCHIC"
+    GRASS = "GRASS"
+    COLORLESS = "COLORLESS"
+
+    def __str__(self):
+        return self.value
 
 
 class EvoStages(Enum):

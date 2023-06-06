@@ -1,15 +1,15 @@
-alakazam:
-#  number: 1
-  type: psychic
-  hp: 80
-  attack_1: Confuse Ray
-#    name: confuse ray
-#    energy_cost: [ psychic, psychic, psychic ]
-#    effect: Flip a coin. If heads, the Defending Pokémon is now Confused.
-#    damage: 30
-  weakness: psychic
-  retreat_cost: 3
-  pokepower: Damage Swap
+#alakazam:
+##  number: 1
+#  type: psychic
+#  hit_points: 80
+#  attack_1: Confuse Ray
+##    name: confuse ray
+##    energy_cost: [ psychic, psychic, psychic ]
+##    effect: Flip a coin. If heads, the Defending Pokémon is now Confused.
+##    damage: 30
+#  weakness: psychic
+#  retreat_cost: 3
+#  pokepower: Damage Swap
 #    effect: As often as you like during your turn (before your attack), you may move 1 damage counter from 1 of
 #      your Pokémon to another as long as you don't Knock Out that Pokémon. This power can't be used if Alakazam
 #      is Asleep, Confused, or Paralyzed.
@@ -20,40 +20,35 @@ alakazam:
 #    weight: 106 lbs. (48.0 kg)
 #    pokedex_entry: Its brain can outperform a supercomputer. Its intelligence quotient is said to be 5000.
 Hitmonchan:
-  type: Fighting
-  hp: 70
-  attack_1: jab  # TODO write a func -> Nice String method e.g. first letter is capitialised and _ => " "
-  attack_2: special_punch
-  resistance: None
-  weakness: Psychic
+  type: FIGHTING
+  hit_points: 70
+  attacks: [Jab, Special Punch]
+  resistance: ''
+  weakness: PSYCHIC
   retreat_cost: 2
-  pokepower: None
+  pokepower: ''
+  stage:
 Electabuzz:
-  type: Lightning
-  hp: 70
-  attack_1: Thundershock
-  attack_2: Thunderpunch
-  resistance: None
-  weakness: Fighting
+  type: LIGHTNING
+  hit_points: 70
+  attacks: [Thundershock, Thunderpunch]
+  resistance: ''
+  weakness: FIGHTING
   retreat_cost: 2
-  pokepower: None
+  pokepower: ''
 Farfetchd:
-  type: Colorless
-  hp: 50
-  attack_1: Leek Slap
-  attack_2: Pot Smash
-  resistance: Fighting
-  weakness: Lightning
+  type: COLORLESS
+  hit_points: 50
+  attacks: [Leek Slap, Pot Smash]
+  resistance: FIGHTING
+  weakness: LIGHTNING
   retreat_cost: 1
-  pokepower: None
+  pokepower: ''
 Chansey:
-  type: Colorless
-  hp: 120
-  attack_1: Scrunch
-  attack_2: Double-edge
-  resistance: Psychic
-  weakness: Fighting
+  type: COLORLESS
+  hit_points: 120
+  attacks: [Scrunch, Double-edge]
+  resistance: PSYCHIC
+  weakness: FIGHTING
   retreat_cost: 1
-  pokepower: None
-
-
+  pokepower: ''
