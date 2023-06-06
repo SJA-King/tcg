@@ -6,6 +6,7 @@ from .piles import Deck, Hand, Discard, Pile, Prizes
 
 import random
 from typing import Union, Type
+import typing
 
 
 def flip_heads() -> bool:
@@ -170,14 +171,18 @@ def draw_card(self, number: int = 1):
     move_cards_between_piles(self.current_player.deck, self.current_player.hand, number)
 
 
-def check_card_type_in_pile(card_type: Type[Card], pile: Pile):
+def check_card_type_in_pile(card_type: Type[Card], pile: Pile) -> typing.Union[list[Card], bool]:
     if not pile:
         print("Empty Pile")
         return False
+    cards_with_type = []
     for card in pile.cards:
         if card_type == type(card):
-            return True
-    return False
+            cards_with_type.append(card)
+
+    if not cards_with_type:
+        return False
+    return cards_with_type
 
 
 def check_pokemon_is_basic(pile: Pile):

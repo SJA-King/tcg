@@ -3,6 +3,7 @@ from src.player import Player
 from src.cards import Card, Energy, ENERGIES, Trainer, Pokemon
 from src.actions import flip_heads, flip_multiple_heads, draw_starting_hand, put_all_cards_back_into_deck
 from src.piles import Deck
+from src.common import EvoStages
 
 
 import logging
@@ -15,7 +16,9 @@ MAX_TURNS: final(int) = 100
 some_trainers = [Trainer(i) for i in "qwertyuiopqwertyuiopqwertyuiopqwert"]
 # some_pokemon = [Pokemon(name=i) for i in "asdfghjklasdfghjklas"]
 # TODO temp small amount of Pokemon to make things easy to test
-some_pokemon = [Pokemon(i) for i in "12345"]
+# TODO Make check that deck has at least one basic pokemon!
+# TODO make a test for that too!
+some_pokemon = [Pokemon(i) for i in "123"] + [Pokemon(i, _evolution_stage=EvoStages.STAGE_ONE) for i in "45"]
 some_energy = [Energy(name="Electric") for _ in range(20)]
 
 a_deck = some_trainers + some_pokemon + some_energy
@@ -38,20 +41,14 @@ while not player_one.ready or \
 
         if player.has_pokemon_in_hand():
             player.is_ready()
-
+            player.draw_prizes()
         else:
             player.redraw_hand()
 
         print(f"Player: {player.name}, Hand = {player.show_hand()}")
 
+# TODO no Pokemon, shuffle then redraw, opponent +1 draw (choice!)
 
-
-    # TODO no Pokemon, shuffle then redraw, opponent +1 draw (choice!)
-
-player_one.draw_prizes()
-player_two.draw_prizes()
-
-# TODO need a Pokemon that is also BASIC!
 # Need to import the cards now proper
 # TODO set active pokemon
 

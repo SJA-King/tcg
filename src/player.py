@@ -11,6 +11,7 @@ from .actions import (move_cards_between_piles, draw_cards, check_card_type_in_p
                       draw_starting_hand, move_cards, put_prizes_back_into_deck,
                       put_hand_back_into_deck, put_discard_back_into_deck)
 from .cards_in_play import PokemonInPlay, ActivePokemon, BenchedPokemon
+from .common import EvoStages
 
 from random import shuffle
 from typing import Union, Type
@@ -116,7 +117,13 @@ class Player:
         return cards_in_hand
 
     def has_pokemon_in_hand(self) -> bool:
-        return check_card_type_in_pile(card_type=Pokemon, pile=self.hand)
+        pokemon_in_hand = check_card_type_in_pile(card_type=Pokemon, pile=self.hand)
+        if pokemon_in_hand:
+            for pokemon in pokemon_in_hand:
+                if pokemon.evolution_stage == EvoStages.BASIC:
+                    return True
+
+        return False
 
     def select_cards(self, pile_to_select_from, number: int = 1):
     #     TODO get player to pick
