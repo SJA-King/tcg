@@ -1,7 +1,7 @@
 from src.game import Game
 from src.player import Player
 from src.cards import Card, Energy, ENERGIES, Trainer, Pokemon
-from src.actions import flip_heads, flip_multiple_heads, draw_starting_hand, redraw_starting_hand
+from src.actions import flip_heads, flip_multiple_heads, draw_starting_hand, put_all_cards_back_into_deck
 from src.piles import Deck
 
 
@@ -15,13 +15,14 @@ MAX_TURNS: final(int) = 100
 some_trainers = [Trainer(i) for i in "qwertyuiopqwertyuiopqwertyuiopqwert"]
 # some_pokemon = [Pokemon(name=i) for i in "asdfghjklasdfghjklas"]
 # TODO temp small amount of Pokemon to make things easy to test
-some_pokemon = [Pokemon(i) for i in "asdfg"]
+some_pokemon = [Pokemon(i) for i in "12345"]
 some_energy = [Energy(name="Electric") for _ in range(20)]
 
 a_deck = some_trainers + some_pokemon + some_energy
+b_deck = some_trainers + some_pokemon + some_energy
 
 player_one = Player("Bethany", chosen_deck=Deck(card_list=a_deck))
-player_two = Player("Simon", chosen_deck=Deck(card_list=a_deck))
+player_two = Player("Simon", chosen_deck=Deck(card_list=b_deck))
 
 if not flip_heads():
     player_one, player_two = player_two, player_one
@@ -45,8 +46,11 @@ while not player_one.has_pokemon_in_hand() or not player_two.has_pokemon_in_hand
         print("P2 REDRAWS")
         player_two.redraw_hand()
 
-    print(player_one.show_hand())
-    print(player_two.show_hand())
+    print(f"Player: {player_one.name}, Hand = {player_one.show_hand()}")
+    print(f"Player: {player_two.name}, Hand = {player_two.show_hand()}")
+
+print(f"Player: {player_one.name} has drawn '{player_one.hands_drawn}' hands")
+print(f"Player: {player_two.name} has drawn '{player_two.hands_drawn}' hands")
 
     # TODO no Pokemon, shuffle then redraw, opponent +1 draw (choice!)
 

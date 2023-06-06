@@ -1,4 +1,5 @@
 # There are two players
+from dataclasses import dataclass
 # Each Player has a Deck, Hand, Discard, Prize_Pool
 # Each Player has cards in play -> Active, Bench, Prize
 from .piles import Deck, Pile, Hand, Prizes, Discard
@@ -6,13 +7,16 @@ from .piles import Deck, Pile, Hand, Prizes, Discard
 # from .gen0.actions import move_card
 from .cards import Card, Trainer, Pokemon, Energy
 # TODO make game do the action upon Player not the player doing them
-from .actions import move_cards_between_piles, draw_cards, check_card_type_in_pile, draw_prizes, take_prize, draw_starting_hand
+from .actions import (move_cards_between_piles, draw_cards, check_card_type_in_pile, draw_prizes, take_prize,
+                      draw_starting_hand, move_cards, put_prizes_back_into_deck,
+                      put_hand_back_into_deck, put_discard_back_into_deck)
 from .cards_in_play import PokemonInPlay, ActivePokemon, BenchedPokemon
 
 from random import shuffle
 from typing import Union, Type
 
 
+@dataclass
 class Player:
 
     def __init__(self, name, chosen_deck: Deck):
@@ -21,28 +25,29 @@ class Player:
         # self._hand: [Union[Trainer, Pokemon, Energy]] = []
         # self._prize_pool: [Union[Trainer, Pokemon, Energy]] = []
         # self._discard = []
-        self._deck: Deck = chosen_deck
-        self._hand: Hand = Hand([])
-        self._prize_pool: Prizes = Prizes([])
-        self._discard: Discard = Discard([])
+        self.deck: Deck = chosen_deck
+        self.hand: Hand = Hand([])
+        self.prizes: Prizes = Prizes([])
+        self.discard: Discard = Discard([])
         self._active: ActivePokemon = ActivePokemon()
         self._hands_drawn = 0
+        self.prizes_drawn = False
 
     @property
     def name(self):
         return self._name
 
     @property
-    def deck(self):
-        return self._deck
-
-    @property
-    def hand(self):
-        return self._hand
-
-    @property
-    def discard(self):
-        return self._discard
+    def hands_drawn(self):
+        return self._hands_drawn
+    #
+    # @property
+    # def hand(self):
+    #     return self._hand
+    #
+    # @property
+    # def discard(self):
+    #     return self._discard
 
     # # TODO make this only settable once!
     # # TODO add a lock?
@@ -59,31 +64,35 @@ class Player:
 
     def draw_cards(self, number: int = 1):
         """ Move an amount of cards from player DESK pile to player HAND pile"""
-        draw_cards(from_deck=self._deck, to_hand=self._hand, number=number)
+        draw_cards(from_deck=self.deck, to_hand=self.hand, number=number)
 
     def draw_card(self):
         """ Move a card from the DESK pile to the HAND pile"""
         self.draw_cards()
 
+    # TODO stop random shuffling!
     def shuffle_deck(self):
-        self._deck.shuffle()
+        self.deck.shuffle()
         # shuffle(self._deck)
 
-    # def draw_hand(self):
-    #
-    #     self.draw_cards(7)
-    #     self._hands_drawn += 1
+    def put_hand_back_into_deck(self):
+        put_hand_back_into_deck(self.hand, self.deck)
+
+    def put_discard_back_into_deck(self):
+        put_discard_back_into_deck(self.discard, self.deck)
+
+    def put_prizes_back_into_deck(self):
+        put_prizes_back_into_deck(self.prizes, self.deck)
 
     def remake_deck(self):
-        """
-        Put all cards back into deck
-        """
-        self._deck += ((self._hand + self._prize_pool) + self._discard)
-        self._hand = []
-        self._prize_pool = []
-        self._discard = []
-        assert len(self._deck) == 60, f"Deck size is incorrect: {len(self._deck)}"
+        self.put_hand_back_into_deck()
+        self.put_discard_back_into_deck()
+        self.put_prizes_back_into_deck()
         self.shuffle_deck()
+
+    def draw_hand(self):
+        draw_starting_hand(self.deck, self.hand)
+        self._hands_drawn += 1
 
     def redraw_hand(self):
         self.remake_deck()
@@ -91,12 +100,12 @@ class Player:
 
     def show_hand(self):
         cards_in_hand = ""
-        for i_card in self._hand:
+        for i_card in self.hand.cards:
             cards_in_hand += f"{i_card.name}, "
         return cards_in_hand
 
     def has_pokemon_in_hand(self) -> bool:
-        return check_card_type_in_pile(card_type=Pokemon, pile=self._hand)
+        return check_card_type_in_pile(card_type=Pokemon, pile=self.hand)
 
     def select_cards(self, pile_to_select_from, number: int = 1):
     #     TODO get player to pick
@@ -121,21 +130,21 @@ class Player:
         raise NotImplementedError
 
     def draw_prizes(self):
-        if self._prizes_drawn:
+        if self.prizes_drawn:
             raise Exception("Cant draw prizes after Game has started")
 
-        draw_prizes(from_deck=self._deck, to_prizes=self._prizes)
+        draw_prizes(from_deck=self.deck, to_prizes=self.prizes)
         # move_cards_between_piles(from_pile=self.deck, to_pile=self._prize_pool, number=6)
-        self._prizes_drawn = True
+        self.prizes_drawn = True
 
     def take_prize(self, number: int = 1):
         # TODO give choice of 1, 2, 3, 4, 5, 6
-        prize = self.select_cards(self._prize_pool, number=number)
-        take_prize(self._prizes, self._hand)
+        prize = self.select_cards(self.prizes, number=number)
+        take_prize(self.prizes, self.hand)
         # self._hand.append(prize)
 
     def has_empty_deck(self) -> bool:
-        return self._deck.cards_left()
+        return self.deck.cards_left()
 
     # DOESNT WORK :/
     # TODO fix

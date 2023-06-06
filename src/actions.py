@@ -59,15 +59,21 @@ def move_cards(from_pile: Pile, to_pile: Pile, number: int = 1) -> None:
         print("From Pile is Empty!")
         return
         # raise Exception(f"Pile '{from_pile}' is Empty")
+    if len(from_pile.cards) == 0:
+        print(f"From Pile is Empty!")
+        return
     if number < 1:
         raise Exception(f"Cant move less than 1 Cards - '{number}'!")
 
     # TODO Add if number >= 60 that you just add them together dont loop!
 
     for _ in range(number):
-        card_to_move = from_pile.cards[0]
-        to_pile.cards.append(card_to_move)
-        from_pile.cards.pop(0)
+        if from_pile.cards:
+            card_to_move = from_pile.cards[0]
+            to_pile.cards.append(card_to_move)
+            from_pile.cards.pop(0)
+        else:
+            break
 
 
 def draw_cards(from_deck: Deck, to_hand: Hand, number: int = 1):
@@ -82,19 +88,50 @@ def check_hand_for_basic_pokemon():
     raise NotImplementedError
 
 
+def put_pile_back_into_deck(from_pile: Pile, to_deck: Deck):
+    if type(to_deck) is not Deck:
+        raise Exception("Expected Type Deck")
+    if len(from_pile.cards) == 0:
+        return
+    move_cards(from_pile=from_pile, to_pile=to_deck, number=60)
+
+
+def put_hand_back_into_deck(hand: Hand, deck: Deck):
+    if type(hand) is not Hand:
+        raise Exception("Expected Type Hand")
+    put_pile_back_into_deck(hand, deck)
+
+
+def put_discard_back_into_deck(discard: Discard, deck: Deck):
+    if type(discard) is not Discard:
+        raise Exception("Expected Type Discard")
+    put_pile_back_into_deck(discard, deck)
+
+
+def put_prizes_back_into_deck(prizes: Prizes, deck: Deck):
+    if type(prizes) is not Prizes:
+        raise Exception("Expected Type Prizes")
+    put_pile_back_into_deck(prizes, deck)
+
+
 def draw_starting_hand(from_deck: Deck, to_hand: Hand):
+    if len(from_deck.cards) != 60:
+        raise Exception(f"Starting Deck should have 60 cards - it has {from_deck.cards}")
     move_cards(from_pile=from_deck, to_pile=to_hand, number=7)
 
 
-def redraw_starting_hand(deck: Deck, hand: Hand, discard: Discard, prizes: Prizes):
+def put_all_cards_back_into_deck(deck: Deck, hand: Hand, discard: Discard, prizes: Prizes):
     move_cards(from_pile=hand, to_pile=deck, number=60)
     move_cards(from_pile=discard, to_pile=deck, number=60)
     move_cards(from_pile=prizes, to_pile=deck, number=60)
 
     deck.shuffle()
-    deck.shuffle()
 
-    draw_starting_hand(from_deck=deck, to_hand=hand)
+
+# def redraw_starting_hand(deck: Deck, hand: Hand, discard: Discard, prizes: Prizes):
+#     put_all_cards_back_into_deck()
+#
+#     draw_starting_hand(from_deck=deck, to_hand=hand)
 
 
 def discard_from_hand(from_hand: Hand, to_discard: Discard, number: int = 1):

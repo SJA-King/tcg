@@ -13,10 +13,10 @@ class Pile:
     def cards_left(self):
         return len(self.cards)
 
-    # TODO 05/06/23 keep fixing
     def __add__(self, other):
         if other.cards:
-            self.cards += other
+            self.cards += other.cards
+            other.cards = []
 
 
 class Deck(Pile):

@@ -24,7 +24,7 @@ class Card:
 
     @property
     def name(self):
-        return self.name
+        return self._name
 
     @property
     def description(self):
