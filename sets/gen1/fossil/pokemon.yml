@@ -1,7 +1,7 @@
 Aerodactyl:
   type: Fighting
   hp: 60
-  attack_1: Wing Attack
+  attacks: [Wing Attack]
   attack_2: None
   resistance: Fighting
   weakness: Grass

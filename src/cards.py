@@ -25,10 +25,11 @@ class CardType(Enum):
 
 
 class CardFlavour(Enum):
-    SUPPORTERT = auto()
+    SUPPORTER = auto()
     STADIUM = auto()
     BASIC = auto()
-    SPECIAL = auto()
+    DOUBLE = auto()
+    # TODO combine EvoStages with this
     # Add STAGE_1?
     # Add STAGE_2?
 
@@ -40,7 +41,7 @@ class Card:
     _hit_points: int = 0
     _energy_type: EnergyTypes = None
     _card_type: CardType = None
-    _card_flavour: CardFlavour = None
+    _card_flavour: CardFlavour = CardFlavour.BASIC
 
     @property
     def name(self):
@@ -133,19 +134,10 @@ class Energy(Card):
     _card_type = CardType.ENERGY
     _amount = 1
 
-    # Assume its the double colorless energy
     def __post_init__(self):
         _name = self._energy_type.value
-        if self._card_flavour == CardFlavour.SPECIAL:
+        if self._card_flavour == CardFlavour.DOUBLE:
             _amount = 2
-
-    # def __init__(self, basic: bool = True):
-    #     super().__init__()
-    #     self._name = self._energy_type.value
-    #     self._basic = basic
-    #     if not self._basic:
-    #         # Assume its the double colorless energy
-    #         self.amount = 2
 
 
 class BasicEnergyCards(Enum):
@@ -158,5 +150,5 @@ class BasicEnergyCards(Enum):
 
 
 class SpecialEnergyCards(Enum):
-    DOUBLECOLORLESS = Energy(_energy_type=EnergyTypes.COLORLESS, _card_flavour=CardFlavour.SPECIAL)
+    DOUBLECOLORLESS = Energy(_energy_type=EnergyTypes.COLORLESS, _card_flavour=CardFlavour.DOUBLE)
 
