@@ -48,7 +48,7 @@ class Player:
         return self._ready
 
     def is_ready(self) -> None:
-        print(f"Player: {self.name} (Ready) : Drawn '{self.hands_drawn}' hands")
+        print(f"Player: {self.name} (Ready) - Drew '{self.hands_drawn}' hands")
         self._ready = True
     #
     # @property

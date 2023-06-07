@@ -24,6 +24,15 @@ class CardType(Enum):
     ENERGY = auto()
 
 
+class CardFlavour(Enum):
+    SUPPORTERT = auto()
+    STADIUM = auto()
+    BASIC = auto()
+    SPECIAL = auto()
+    # Add STAGE_1?
+    # Add STAGE_2?
+
+
 @dataclass
 class Card:
     _name: str = ""
@@ -31,6 +40,7 @@ class Card:
     _hit_points: int = 0
     _energy_type: EnergyTypes = None
     _card_type: CardType = None
+    _card_flavour: CardFlavour = None
 
     @property
     def name(self):
@@ -121,13 +131,13 @@ class Trainer(Card):
 @dataclass
 class Energy(Card):
     _card_type = CardType.ENERGY
-    # TODO broken from here!!!
-    _name = _energy_type.value
-    _basic = True
     _amount = 1
-    if not _basic:
-        # Assume its the double colorless energy
-        _amount = 2
+
+    # Assume its the double colorless energy
+    def __post_init__(self):
+        _name = self._energy_type.value
+        if self._card_flavour == CardFlavour.SPECIAL:
+            _amount = 2
 
     # def __init__(self, basic: bool = True):
     #     super().__init__()
@@ -140,12 +150,13 @@ class Energy(Card):
 
 class BasicEnergyCards(Enum):
     LIGHTNING = Energy(_energy_type=EnergyTypes.LIGHTNING)
-    PSYCHIC = Energy(energy_type=EnergyTypes.PSYCHIC)
-    FIRE = Energy(energy_type=EnergyTypes.FIRE)
-    WATER = Energy(energy_type=EnergyTypes.WATER)
-    GRASS = Energy(energy_type=EnergyTypes.GRASS)
-    FIGHTING = Energy(energy_type=EnergyTypes.FIGHTING)
+    PSYCHIC = Energy(_energy_type=EnergyTypes.PSYCHIC)
+    FIRE = Energy(_energy_type=EnergyTypes.FIRE)
+    WATER = Energy(_energy_type=EnergyTypes.WATER)
+    GRASS = Energy(_energy_type=EnergyTypes.GRASS)
+    FIGHTING = Energy(_energy_type=EnergyTypes.FIGHTING)
 
 
 class SpecialEnergyCards(Enum):
-    DOUBLECOLORLESS = Energy(energy_type=EnergyTypes.COLORLESS, basic=False)
+    DOUBLECOLORLESS = Energy(_energy_type=EnergyTypes.COLORLESS, _card_flavour=CardFlavour.SPECIAL)
+
