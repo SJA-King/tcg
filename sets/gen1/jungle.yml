@@ -1,9 +1,10 @@
-Clefable:
-  type: Colorless
-  hp: 70
-  attack_1: Metronome
-  attack_2: Minimize
-  resistance: Psychic
-  weakness: Fighting
-  retreat_cost: 2
-  pokepower: None
+Pokemon:
+  Clefable:
+    type: COLORLESS
+    hp: 70
+    attacks: [Metronome, Minimize]
+    resistance: PSYCHIC
+    weakness: FIGHTING
+    retreat_cost: 2
+    pokepower: ''
+Trainers: [ Poke Ball ]

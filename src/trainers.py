@@ -11,6 +11,7 @@ def play_trainer(card_name: str) -> None:
 # Gust of Wind:
 #   description: Choose 1 of your opponent's Benched Pokémon and switch it with his or her Active Pokémon.
 
+# TODO add energy retrieval
 
 def gust_of_wind():
 

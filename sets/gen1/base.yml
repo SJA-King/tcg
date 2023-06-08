@@ -1,54 +1,81 @@
-#alakazam:
-##  number: 1
-#  type: psychic
-#  hit_points: 80
-#  attack_1: Confuse Ray
-##    name: confuse ray
-##    energy_cost: [ psychic, psychic, psychic ]
-##    effect: Flip a coin. If heads, the Defending Pokémon is now Confused.
-##    damage: 30
-#  weakness: psychic
-#  retreat_cost: 3
-#  pokepower: Damage Swap
-#    effect: As often as you like during your turn (before your attack), you may move 1 damage counter from 1 of
-#      your Pokémon to another as long as you don't Knock Out that Pokémon. This power can't be used if Alakazam
-#      is Asleep, Confused, or Paralyzed.
-#  other:
-#    #                        other non-game information
-#    no: 065
-#    height: 4'11" (1.5 m)
-#    weight: 106 lbs. (48.0 kg)
-#    pokedex_entry: Its brain can outperform a supercomputer. Its intelligence quotient is said to be 5000.
-Hitmonchan:
-  type: FIGHTING
-  hit_points: 70
-  attacks: [Jab, Special Punch]
-  resistance: ''
-  weakness: PSYCHIC
-  retreat_cost: 2
-  pokepower: ''
-  stage:
-Electabuzz:
-  type: LIGHTNING
-  hit_points: 70
-  attacks: [Thundershock, Thunderpunch]
-  resistance: ''
-  weakness: FIGHTING
-  retreat_cost: 2
-  pokepower: ''
-Farfetchd:
-  type: COLORLESS
-  hit_points: 50
-  attacks: [Leek Slap, Pot Smash]
-  resistance: FIGHTING
-  weakness: LIGHTNING
-  retreat_cost: 1
-  pokepower: ''
-Chansey:
-  type: COLORLESS
-  hit_points: 120
-  attacks: [Scrunch, Double-edge]
-  resistance: PSYCHIC
-  weakness: FIGHTING
-  retreat_cost: 1
-  pokepower: ''
+pokemon:
+  #alakazam:
+  ##  number: 1
+  #  type: psychic
+  #  hit_points: 80
+  #  attack_1: Confuse Ray
+  ##    name: confuse ray
+  ##    energy_cost: [ psychic, psychic, psychic ]
+  ##    effect: Flip a coin. If heads, the Defending Pokémon is now Confused.
+  ##    damage: 30
+  #  weakness: psychic
+  #  retreat_cost: 3
+  #  pokepower: Damage Swap
+  #    effect: As often as you like during your turn (before your attack), you may move 1 damage counter from 1 of
+  #      your Pokémon to another as long as you don't Knock Out that Pokémon. This power can't be used if Alakazam
+  #      is Asleep, Confused, or Paralyzed.
+  #  other:
+  #    #                        other non-game information
+  #    no: 065
+  #    height: 4'11" (1.5 m)
+  #    weight: 106 lbs. (48.0 kg)
+  #    pokedex_entry: Its brain can outperform a supercomputer. Its intelligence quotient is said to be 5000.
+  Hitmonchan:
+    type: FIGHTING
+    hit_points: 70
+    attacks: [Jab, Special Punch]
+    resistance: ''
+    weakness: PSYCHIC
+    retreat_cost: 2
+    pokepower: ''
+    stage:
+  Electabuzz:
+    type: LIGHTNING
+    hit_points: 70
+    attacks: [Thundershock, Thunderpunch]
+    resistance: ''
+    weakness: FIGHTING
+    retreat_cost: 2
+    pokepower: ''
+  Farfetchd:
+    type: COLORLESS
+    hit_points: 50
+    attacks: [Leek Slap, Pot Smash]
+    resistance: FIGHTING
+    weakness: LIGHTNING
+    retreat_cost: 1
+    pokepower: ''
+  Chansey:
+    type: COLORLESS
+    hit_points: 120
+    attacks: [Scrunch, Double-edge]
+    resistance: PSYCHIC
+    weakness: FIGHTING
+    retreat_cost: 1
+    pokepower: ''
+trainers: [ Switch: 95,
+            Gust Of Wind: 93,
+            Computer Search: 71,
+            Scoop Up: 78 ,
+            Defender: 80,
+            Pluspower: 84,
+            Professor Oak: 88,
+            Bill: 91,
+            Energy Removal: 79,
+            Item Finder: 74]
+#            Energy Retrieval,
+#            Clefairy Doll,
+#            Devolution Spray,
+#            Lass,
+#            Pokemon Breeder,
+#            Pokemon Trader,
+#            Super Energy Removal,
+#            Full Heal,
+#            Mainenance,
+#            Pokemon Center,
+#            Pokemon Flute,
+#            Pokedex,
+#            Revive,
+#            Potion,
+#            Super Potion
+#Imposter Professor Oak
