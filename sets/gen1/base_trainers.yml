@@ -1,0 +1,29 @@
+#    Switch:
+#      number: 95,
+#      action: switch
+    # TODO think about how to have a trainer that has its action ready
+Gust Of Wind: 93,
+Computer Search: 71,
+Scoop Up: 78 ,
+Defender: 80,
+Pluspower: 84,
+Professor Oak: 88,
+Bill: 91,
+Energy Removal: 79,
+Item Finder: 74
+#            Energy Retrieval,
+#            Clefairy Doll,
+#            Devolution Spray,
+#            Lass,
+#            Pokemon Breeder,
+#            Pokemon Trader,
+#            Super Energy Removal,
+#            Full Heal,
+#            Mainenance,
+#            Pokemon Center,
+#            Pokemon Flute,
+#            Pokedex,
+#            Revive,
+#            Potion,
+#            Super Potion
+#Imposter Professor Oak

@@ -187,32 +187,4 @@ class Game:
 # the_game.make_available_decks_list()
 # print(the_game.decks_available['wavemaker'])
 
-from enum import Enum, auto
 
-class GenerationSets(Enum):
-    gen1 = auto()
-
-
-class GenerationSubSets(Enum):
-    base = auto()
-    fossil = auto()
-    jungle = auto()
-
-
-def import_yml():
-    raise NotImplementedError
-
-def import_deck():
-    raise NotImplementedError
-
-# TODO add Type to yml version of a card
-# TODO change sets/gen#/sub/pokemon.yml to sets/gen#/base.yml which includes pokemon, trainers from that set
-# TODO Maybe do similar to energy? Or not as we dont need new energies for at least two more gens!
-
-def import_set(generation: GenerationSets = GenerationSets.gen1, subset: GenerationSubSets = None):
-    raise NotImplementedError
-
-from .cards import Card
-
-def make_deck(deck_name: str, available_cards: list[Card]) -> list[Card]:
-    raise NotImplementedError

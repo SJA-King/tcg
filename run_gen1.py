@@ -3,7 +3,8 @@ from src.player import Player
 from src.cards import Card, Energy, BasicEnergyCards, Trainer, Pokemon
 from src.actions import flip_heads, flip_multiple_heads, draw_starting_hand, put_all_cards_back_into_deck
 from src.piles import Deck
-from src.common import EvoStages, EnergyTypes
+from src.common import EvoStages, EnergyTypes, GenerationSubSets
+from src.utils import import_gen_card_list
 
 import logging
 from typing import final
@@ -12,7 +13,7 @@ logging.basicConfig(level=logging.INFO)
 
 MAX_TURNS: final(int) = 100
 
-
+card_in_gen1 = import_gen_card_list("gen1")
 
 some_trainers = [Trainer(i) for i in "qwertyuiopqwertyuiopqwertyuiopqwert"]
 # some_pokemon = [Pokemon(name=i) for i in "asdfghjklasdfghjklas"]

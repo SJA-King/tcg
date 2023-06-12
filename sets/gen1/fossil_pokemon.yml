@@ -1,0 +1,9 @@
+Aerodactyl:
+  type: FIGHTING
+  hp: 60
+  attacks: [Wing Attack]
+  attack_2: None
+  resistance: FIGHTING
+  weakness: GRASS
+  retreat_cost: 2
+  pokepower: Prehistoric Power

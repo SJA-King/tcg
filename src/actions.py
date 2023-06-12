@@ -186,8 +186,7 @@ def check_card_type_in_pile(card_type: Type[Card], pile: Pile) -> typing.Union[l
     return cards_with_type
 
 
-def check_pokemon_is_basic(cards: list[Card]):
-    # TODO fix unresolved attribute issue below - this 'typing.Union[Pile, Pokemon]' didnt work
+def check_pokemon_is_basic(cards: list[Union[Pokemon, Trainer, Energy]]):
     for card in cards:
         if type(card) is Pokemon:
             if card.evolution_stage == EvoStages.BASIC:
@@ -200,6 +199,31 @@ def select_cards(pile_to_select: list, number: int = 1) -> list:
     """ Select a pile of cards from another pile of cards """
     # TODO INCOMPLETE!
     return pile_to_select
+
+
+def give_sleep():
+    pass
+
+
+def give_confuse():
+    pass
+
+
+def give_paralysis():
+    pass
+
+# TODO for future generations
+# def give_poison()
+#     pass
+#
+# def give_burn():
+#     pass
+
+STATUSES = {
+    "sleep": give_sleep(),
+    "confuse": give_confuse(),
+    "paralysis": give_paralysis()
+}
 
 
 # TODO make an action_builder using the string from the yml
