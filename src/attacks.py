@@ -117,8 +117,13 @@ def set_status_():
 #     Attack("jab").active_damage(reciever=receiver, damage=20)
 #
 
+def wing_attack():
+    raise NotImplementedError
+
+
 def confuse_ray():
     raise NotImplementedError
+
 
 def jab():
     raise NotImplementedError

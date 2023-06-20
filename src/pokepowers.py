@@ -6,6 +6,9 @@ from enum import Enum, auto
 def damage_swap():
     return "NotImplemented!"
 
+def prehistoric_power():
+    return "NotImplemented!"
+
 
 class PokePower(Enum):
-    DAMAGE_SWAP = damage_swap()
+    DamageSwap = damage_swap()

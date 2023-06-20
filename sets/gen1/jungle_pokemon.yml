@@ -1,8 +1,0 @@
-Clefable:
-  type: COLORLESS
-  hp: 70
-  attacks: [Metronome, Minimize]
-  resistance: PSYCHIC
-  weakness: FIGHTING
-  retreat_cost: 2
-  pokepower: ''
