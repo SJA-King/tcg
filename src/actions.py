@@ -246,3 +246,11 @@ ACTIONS = {
     # TODO Need to make this more generic
     # "Draw": Action("Draw", action=draw_card())
 }
+from player import Player
+
+def move_pkmn_in_play():
+    pass
+def make_pkmn_in_play_benched(player: Player):
+    pass
+def make_pkmn_in_play_active():
+    pass

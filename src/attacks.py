@@ -116,6 +116,10 @@ def set_status_():
 # def jab(receiver: Player):
 #     Attack("jab").active_damage(reciever=receiver, damage=20)
 #
+
+def confuse_ray():
+    raise NotImplementedError
+
 def jab():
     raise NotImplementedError
 
@@ -124,7 +128,7 @@ def double_edge():
     raise NotImplementedError
 
 
-def leek_smash():
+def leek_slap():
     raise NotImplementedError
 
 
@@ -154,7 +158,7 @@ from enum import Enum
 class Attacks(Enum):
     double_edge = (double_edge,)
     jab = (jab,)
-    leek_smash = (leek_smash,)
+    leek_smash = (leek_slap,)
     pot_smash = (pot_smash,)
     scrunch = (scrunch,)
     special_punch = (special_punch,)
@@ -171,3 +175,5 @@ class Attacks(Enum):
 # >>World
 # print(Attacks["jab"](0))
 # >>Hello
+
+

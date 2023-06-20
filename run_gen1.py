@@ -13,7 +13,8 @@ logging.basicConfig(level=logging.INFO)
 
 MAX_TURNS: final(int) = 100
 
-card_in_gen1 = import_gen_card_list("gen1")
+# TODO revise structure before continuing
+# card_in_gen1 = import_gen_card_list("gen1")
 
 some_trainers = [Trainer(i) for i in "qwertyuiopqwertyuiopqwertyuiopqwert"]
 # some_pokemon = [Pokemon(name=i) for i in "asdfghjklasdfghjklas"]

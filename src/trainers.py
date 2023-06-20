@@ -1,6 +1,14 @@
 
 from cards import Card, play_card
-from actions import flip_heads, shuffle_pile
+from player import Player
+from actions import flip_heads, shuffle_pile, make_pkmn_in_play_active, make_pkmn_in_play_benched
+
+
+# TODO in game.py
+# def play_trainer():
+#   Trainer.action(playee, opponent)
+#   discard_card_from_hand(Trainer) # which under the hood moves it from hand to discard!
+
 
 
 def play_trainer(card_name: str) -> None:
@@ -13,11 +21,12 @@ def play_trainer(card_name: str) -> None:
 
 # TODO add energy retrieval
 
-def gust_of_wind():
+def gust_of_wind(playee: Player, opponent: Player):
 
     # TODO waste card if none on bench
     # TODO add a select bench position
-    move_pokemon(self.other.active, self.other.bench)
+    make_pkmn_in_play_benched(opponent)
+    # move_pokemon(self.other.active, self.other.bench)
 
 
 def computer_search():
@@ -136,3 +145,26 @@ def do_poke_ball():
         text:
     """
     raise NotImplementedError
+
+from cards import CardType
+from attacks import Attack
+from dataclasses import dataclass
+# TODO below to change things to enums maybe
+@dataclass
+class Trainer(Card):
+    #if so we could just have 'move' rather than 'draw' and / or 'discard'
+    discard: int = 0
+    draw: int = 0
+    move: int = 0
+    # NEED draw, discard and move, to make things easier!
+    heal: bool = False
+    switch: bool = False  # Used to swap active and bench OR active to hand
+    player: str = ""
+    # TODO need a position_from and a _to -- a to b?
+    position_from: str = ""
+    position_to: str = ""
+    # position on its own is singular space? or should it always be a->b?
+    position: str = ""  # E.g. hand, active, bench, deck, discard_pile
+    attach: bool = False
+    card_type = CardType.TRAINER
+    # TODO need a select? rather than automatic?
