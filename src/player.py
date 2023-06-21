@@ -5,16 +5,19 @@ from dataclasses import dataclass
 from .piles import Deck, Pile, Hand, Prizes, Discard
 # from piles import Deck, Pile, Hand, Prizes, Discard
 # from .gen0.actions import move_card
-from .cards import Card, Trainer, Pokemon, Energy
+from .cards import Card, Energy
+
 # TODO make game do the action upon Player not the player doing them
 from .actions import (move_cards_between_piles, draw_cards, check_card_type_in_pile, draw_prizes, take_prize,
                       draw_starting_hand, move_cards, put_prizes_back_into_deck,
-                      put_hand_back_into_deck, put_discard_back_into_deck, check_pokemon_is_basic)
+                      put_hand_back_into_deck, put_discard_back_into_deck, check_pokemon_is_basic, check_pokemon_in_hand)
 from .cards_in_play import PokemonInPlay, ActivePokemon, BenchedPokemon
 from .common import EvoStages
 
 from random import shuffle
 from typing import Union, Type
+
+
 
 
 @dataclass
@@ -119,7 +122,7 @@ class Player:
         return cards_in_hand
 
     def has_pokemon_in_hand(self) -> bool:
-        pokemon_in_hand = check_card_type_in_pile(card_type=Pokemon, pile=self.hand)
+        pokemon_in_hand = check_pokemon_in_hand(pile=self.hand)
         if pokemon_in_hand:
             return check_pokemon_is_basic(pokemon_in_hand)
 

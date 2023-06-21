@@ -1,7 +1,9 @@
 # an Action is something that effects the game's board state
 
 # An action handles contents of other classes, i.e. not a Player, but a players deck, hand, etc
-from .cards import Card, Pokemon, Trainer, Energy
+from .cards import Card, Energy
+from .pokemon import Pokemon
+from .trainers import Trainer
 from .piles import Deck, Hand, Discard, Pile, Prizes
 from .common import EvoStages
 
@@ -10,15 +12,23 @@ from typing import Union, Type
 import typing
 
 
-def flip_heads() -> bool:
+from enum import Enum, auto
+
+
+class CoinFlip(Enum):
+    HEADS = True
+    TAILS = False
+
+
+def flip_heads() -> CoinFlip:
     """
     1 = Heads
     2 = Tails
     :return:
     """
     if random.randint(1, 2) == 1:
-        return True
-    return False
+        return CoinFlip.HEADS
+    return CoinFlip.TAILS
 
 
 # Unlikely to be needed but still useful
@@ -186,6 +196,10 @@ def check_card_type_in_pile(card_type: Type[Card], pile: Pile) -> typing.Union[l
     return cards_with_type
 
 
+def check_pokemon_in_hand(hand: Hand = None):
+    check_card_type_in_pile(card_type=Pokemon, pile=hand)
+
+
 def check_pokemon_is_basic(cards: list[Union[Pokemon, Trainer, Energy]]):
     for card in cards:
         if type(card) is Pokemon:
@@ -246,11 +260,11 @@ ACTIONS = {
     # TODO Need to make this more generic
     # "Draw": Action("Draw", action=draw_card())
 }
-from player import Player
+# from player import Player
 
 def move_pkmn_in_play():
     pass
-def make_pkmn_in_play_benched(player: Player):
-    pass
+# def make_pkmn_in_play_benched(player: Player):
+#     pass
 def make_pkmn_in_play_active():
     pass

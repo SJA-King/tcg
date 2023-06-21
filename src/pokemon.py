@@ -1,9 +1,8 @@
-from attacks import (Attack, jab, special_punch, thunderpunch, thundershock, leek_slap, pot_smash, scrunch, double_edge,
-                     confuse_ray, wing_attack)
-from common import EnergyTypes, EvoStages
-from pokepowers import PokePower, damage_swap, prehistoric_power
+from .attacks import Attacks
+from .common import EnergyTypes, EvoStages
+from .pokepowers import PokePower, damage_swap, prehistoric_power
 from dataclasses import dataclass
-from cards import Card, CardType, CardFlavour
+from .cards import Card, CardType, CardFlavour
 from typing import final
 
 
@@ -13,9 +12,9 @@ class Pokemon(Card):
     resistance: EnergyTypes = None
     weakness: EnergyTypes = None
 
-    attack_one: Attack = None
-    attack_two: Attack = None
-    attack_three: Attack = None
+    attack_one: Attacks = None
+    attack_two: Attacks = None
+    attack_three: Attacks = None
     pokepower: PokePower = None
 
     hit_points: int = 0
@@ -35,37 +34,37 @@ BASE_POKEMON: final({str: Pokemon}) = {
     "Hitmonchan": Pokemon(name="Hitmonchan",
                           energy_type=EnergyTypes.FIGHTING,
                           hit_points=70,
-                          attack_one=jab(),
-                          attack_two=special_punch(),
+                          attack_one=Attacks.Jab,
+                          attack_two=Attacks.SpecialPunch,
                           weakness=EnergyTypes.PSYCHIC,
                           retreat_cost=2),
     "Electabuzz": Pokemon(name="Electabuzz",
                           energy_type=EnergyTypes.LIGHTNING,
                           hit_points=70,
-                          attack_one=thundershock(),
-                          attack_two=thunderpunch(),
+                          attack_one=Attacks.Thundershock,
+                          attack_two=Attacks.Thunderpunch,
                           weakness=EnergyTypes.FIGHTING,
                           retreat_cost=2),
     "Far'fetchd": Pokemon(name="Far'fetchd",
                           energy_type=EnergyTypes.COLORLESS,
                           hit_points=50,
-                          attack_one=leek_slap(),
-                          attack_two=pot_smash(),
+                          attack_one=Attacks.LeekSlap,
+                          attack_two=Attacks.PotSmash,
                           resistance=EnergyTypes.FIGHTING,
                           weakness=EnergyTypes.LIGHTNING,
                           retreat_cost=1),
     "Chansey": Pokemon(name="Chansey",
                        energy_type=EnergyTypes.COLORLESS,
                        hit_points=120,
-                       attack_one=scrunch(),
-                       attack_two=double_edge(),
+                       attack_one=Attacks.Scrunch,
+                       attack_two=Attacks.DoubleEdge,
                        resistance=EnergyTypes.PSYCHIC,
                        weakness=EnergyTypes.FIGHTING,
                        retreat_cost=1),
     "Alakazam": Pokemon(name="Alakazam",
                         energy_type=EnergyTypes.PSYCHIC,
                         hit_points=80,
-                        attack_one=confuse_ray(),
+                        attack_one=Attacks.ConfuseRay,
                         pokepower=damage_swap(),
                         weakness=EnergyTypes.PSYCHIC,
                         retreat_cost=3,
@@ -98,7 +97,7 @@ FOSSIL_POKEMON: final({str: Pokemon}) = {
     "Aerodactyl": Pokemon(name="Aerodactyl",
                           energy_type=EnergyTypes.FIGHTING,
                           hit_points=60,
-                          attack_one=wing_attack(),
+                          attack_one=Attacks.WingAttack,
                           resistance=EnergyTypes.FIGHTING,
                           weakness=EnergyTypes.GRASS,
                           retreat_cost=2,

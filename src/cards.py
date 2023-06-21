@@ -5,9 +5,7 @@
 # from .gen1.attacks import ATTACKS
 # from .gen1.pokepowers import POKEPOWERS
 from dataclasses import dataclass, field
-from .attacks import Attacks
 from .common import EnergyTypes, EvoStages
-from .pokepowers import PokePower
 
 from enum import Enum, auto
 

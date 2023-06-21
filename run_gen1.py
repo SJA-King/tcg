@@ -1,6 +1,8 @@
 from src.game import Game
 from src.player import Player
-from src.cards import Card, Energy, BasicEnergyCards, Trainer, Pokemon
+from src.cards import Card, Energy, BasicEnergyCards
+from src.trainers import Trainer
+from src.pokemon import Pokemon
 from src.actions import flip_heads, flip_multiple_heads, draw_starting_hand, put_all_cards_back_into_deck
 from src.piles import Deck
 from src.common import EvoStages, EnergyTypes, GenerationSubSets
@@ -21,7 +23,7 @@ some_trainers = [Trainer(i) for i in "qwertyuiopqwertyuiopqwertyuiopqwert"]
 # TODO temp small amount of Pokemon to make things easy to test
 # TODO Make check that deck has at least one basic pokemon!
 # TODO make a test for that too!
-some_pokemon = [Pokemon(i) for i in "123"] + [Pokemon(i, _evolution_stage=EvoStages.STAGE_ONE) for i in "45"]
+some_pokemon = [Pokemon(i) for i in "123"] + [Pokemon(i, evolution_stage=EvoStages.STAGE_ONE) for i in "45"]
 # TODO check keys in yml are expected
 # TODO check values are one of expected values, e.g. types, attacks, pokepowers,
 lightning_energy = [BasicEnergyCards[EnergyTypes.LIGHTNING.value].value for _ in range(20)]
@@ -51,6 +53,9 @@ while not player_one.ready or \
             player.redraw_hand()
 
     # Add option to draw more cards up to times opponent mulliganed
+
+# TODO Add cards to players hand based on _hands_drawn!
+
 
 # Need to import the cards now proper
 # TODO set active pokemon

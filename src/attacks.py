@@ -7,28 +7,74 @@
 # def play_attack(card_name: str) -> None:
 #     play_card(card_name)
 
+# from .player import Player
+from enum import Enum, auto
+from .common import EnergyTypes
+class Status(Enum):
+    PARALYZED = auto()  # cant attack or retreat for 1 turn
+    ASLEEP = auto()  # coin flip between turns, heads is awake, tails not
+    CONFUSED = auto()  # coin flip to attack, heads as-normal, tails take 3 damage counters
+    # below are future statuses
+    # BURNED = auto()
+    # POISONED = auto()
 
+class CoinFlip(Enum):
+    HEADS = True
+    TAILS = False
+
+
+class AttackEffects(Enum):
+    DAMAGE = auto()
+    DISCARD = auto()
+    DRAW = auto()
+    RECOIL = auto()
+    IMMUNE = auto()
+    PARALYZED = Status.PARALYZED
+    ASLEEP = Status.ASLEEP
+    CONFUSED = Status.CONFUSED
+
+from typing import Union
 class Attack:
-    def __init__(self, name: str):
-        __name__ = name
+    def __init__(self,
+                 name: str,
+                 active_damage: int = 0,
+                 status: Status = None,
+                 recoil_damage: int = 0,
+                 discard: dict[EnergyTypes: int] = None,
+                 immune: bool = False,
+                 # TODO change EnergyTypes to EnergyCards!
+                 cost: dict[EnergyTypes: int] = None,
+                 coin_flip: int = 0,
+                 heads_effect: AttackEffects = None,
+                 tails_effect: AttackEffects = None
+                 ):
+
 
     # def active_damage(self, receiver: Player, damage: int): # TODO add damage type!
     #     if damage % 10 != 0:
     #         raise Exception(f"Damage: {damage} ISNT multiple of ten")
     #     receiver.active.take_damage(damage=damage)  # TODO make this method
 
-def benched_damage():
-    pass
+# Example attacks!
+jab = Attack(name="Jab",
+             active_damage=20,
+             cost={EnergyTypes.FIGHTING: 1})
+thundershock = Attack(name="Thundershock",
+                      active_damage=10,
+                      coin_flip=1,
+                      heads_effect=AttackEffects.PARALYZED,
+                      cost={EnergyTypes.LIGHTNING: 1}
+                      )
+thundpunch = Attack(name="Thunderpunch",
+                    active_damage=30,
+                    coin_flip=1,
+                    heads_effect=AttackEffects.DAMAGE, # TODO set increased damage
+                    tails_effect=AttackEffects.RECOIL,  # TODO set recoil damage
+                    cost={EnergyTypes.LIGHTNING: 1, EnergyTypes.COLORLESS: 1})
 
-def active_status():
-    pass
 
-def set_status_sleep():
-    pass
-def set_status_paralyzed():
-    pass
-def set_status_():
-    pass
+# TODO maybe have an effect class? with damage_flat, damage_modifier, etc? Or could that be part of Attack?
+
 
 
 # from ..common import STATUSES
@@ -161,14 +207,16 @@ from enum import Enum
 
 
 class Attacks(Enum):
-    double_edge = (double_edge,)
-    jab = (jab,)
-    leek_smash = (leek_slap,)
-    pot_smash = (pot_smash,)
-    scrunch = (scrunch,)
-    special_punch = (special_punch,)
-    thunderpunch = (thunderpunch,)
-    thundershock = (thundershock,)
+    DoubleEdge = (double_edge,)
+    Jab = (jab,)
+    LeekSlap = (leek_slap,)
+    PotSmash = (pot_smash,)
+    Scrunch = (scrunch,)
+    SpecialPunch = (special_punch,)
+    Thunderpunch = (thunderpunch,)
+    Thundershock = (thundershock,)
+    WingAttack = (wing_attack,)
+    ConfuseRay = (confuse_ray,)
 
     def __call__(self, *args, **kwargs):
         return self.value[0](*args, **kwargs)

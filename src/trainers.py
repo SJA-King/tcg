@@ -1,7 +1,7 @@
 
-from cards import Card, play_card
-from player import Player
-from actions import flip_heads, shuffle_pile, make_pkmn_in_play_active, make_pkmn_in_play_benched
+from .cards import Card, play_card
+# from .player import Player
+# from .actions import flip_heads, make_pkmn_in_play_active, make_pkmn_in_play_benched
 
 
 # TODO in game.py
@@ -21,11 +21,12 @@ def play_trainer(card_name: str) -> None:
 
 # TODO add energy retrieval
 
-def gust_of_wind(playee: Player, opponent: Player):
-
+def gust_of_wind():
+        # playee: Player, opponent: Player):
+    pass
     # TODO waste card if none on bench
     # TODO add a select bench position
-    make_pkmn_in_play_benched(opponent)
+    # make_pkmn_in_play_benched(opponent)
     # move_pokemon(self.other.active, self.other.bench)
 
 
@@ -146,8 +147,8 @@ def do_poke_ball():
     """
     raise NotImplementedError
 
-from cards import CardType
-from attacks import Attack
+from .cards import CardType
+
 from dataclasses import dataclass
 # TODO below to change things to enums maybe
 @dataclass

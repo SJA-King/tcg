@@ -1,12 +1,19 @@
-from .cards import Pokemon, Trainer, Energy
+from .cards import Energy
+from .pokemon import Pokemon
+from .trainers import Trainer
 from .piles import Pile
 from .attacks import Attacks
 from .pokepowers import PokePower
-from .attacks import Attacks
+# from .attacks import Attacks
 
 # Only an InPlay Card needs player_1 and player_2
 
 # TODO PokemonInPlay has Cards attached to it, so we can move them around
+
+from enum import Enum, auto
+
+
+
 
 
 class PokemonInPlay(Pokemon):
@@ -18,21 +25,21 @@ class PokemonInPlay(Pokemon):
 
     # TODO constructor needs (owner: Player, opponent: Player)
 
-    def attack_x(self, number: int):
-        if not self._attacks:
-            raise Exception("No Attacks listed!")
-        if len(self._attacks) > number:
-            return Attacks[self._attacks[number]]
-        return False
-
-    def attack_one(self):
-        return self.attack_x(0)
-
-    def attack_two(self):
-        return self.attack_x(1)
-
-    def attack_three(self):
-        return self.attack_x(2)
+    # def attack_x(self, number: int):
+    #     if not self._attacks:
+    #         raise Exception("No Attacks listed!")
+    #     if len(self._attacks) > number:
+    #         return Attacks[self._attacks[number]]
+    #     return False
+    #
+    # def attack_one(self):
+    #     return self.attack_x(0)
+    #
+    # def attack_two(self):
+    #     return self.attack_x(1)
+    #
+    # def attack_three(self):
+    #     return self.attack_x(2)
 
     # TODO think about how a Pokemon(Card) becomes a PokemonInPlay AND vice versa
 
