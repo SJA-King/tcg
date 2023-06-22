@@ -70,28 +70,6 @@ BASE_POKEMON: final({str: Pokemon}) = {
                         retreat_cost=3,
                         evolution_stage=EvoStages.STAGE_TWO),
 }
-#alakazam:
-##  number: 1
-#  type: psychic
-#  hit_points: 80
-#  attack_1: Confuse Ray
-##    name: confuse ray
-##    energy_cost: [ psychic, psychic, psychic ]
-##    effect: Flip a coin. If heads, the Defending Pokémon is now Confused.
-##    damage: 30
-#  weakness: psychic
-#  retreat_cost: 3
-#  pokepower: Damage Swap
-#    effect: As often as you like during your turn (before your attack), you may move 1 damage counter from 1 of
-#      your Pokémon to another as long as you don't Knock Out that Pokémon. This power can't be used if Alakazam
-#      is Asleep, Confused, or Paralyzed.
-#  other:
-#    #                        other non-game information
-#    no: 065
-#    height: 4'11" (1.5 m)
-#    weight: 106 lbs. (48.0 kg)
-#    pokedex_entry: Its brain can outperform a supercomputer. Its intelligence quotient is said to be 5000.
-
 
 FOSSIL_POKEMON: final({str: Pokemon}) = {
     "Aerodactyl": Pokemon(name="Aerodactyl",
@@ -108,8 +86,8 @@ JUNGLE_POKEMON: final({str: Pokemon}) = {
     "Clefable": Pokemon(name="Clefable",
                         energy_type=EnergyTypes.COLORLESS,
                         hit_points=70,
-                        # attack_one=Metronome,
-                        # attack_two=Minimize,
+                        attack_one=Attacks.Metronome,
+                        attack_two=Attacks.Minimize,
                         resistance=EnergyTypes.PSYCHIC,
                         weakness=EnergyTypes.FIGHTING,
                         retreat_cost=2)
